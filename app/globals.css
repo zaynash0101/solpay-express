@@ -131,37 +131,65 @@
   }
 }
 
-/* Wallet adapter overrides */
+/* Wallet adapter overrides - Clean Web3 Standard */
 .wallet-adapter-button {
-  @apply !bg-gradient-solana !font-semibold !rounded-lg !transition-all !duration-300;
+  background: linear-gradient(135deg, #9945FF 0%, #14F195 100%) !important;
+  font-weight: 600 !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s !important;
+  border: none !important;
+  padding: 0.625rem 1.5rem !important;
+  font-size: 0.875rem !important;
 }
 
 .wallet-adapter-button:hover:not([disabled]) {
-  @apply !brightness-110 !scale-105;
+  opacity: 0.9 !important;
+  transform: scale(1.02) !important;
 }
 
 .wallet-adapter-modal-wrapper {
-  @apply !bg-background/95 !backdrop-blur-xl;
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
 }
 
 .wallet-adapter-modal {
-  @apply !bg-card !border !border-border !rounded-2xl;
+  background: #1a1a2e !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
+  max-width: 400px !important;
 }
 
 .wallet-adapter-modal-title {
-  @apply !text-foreground;
+  color: white !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
 }
 
 .wallet-adapter-modal-list {
-  @apply !gap-2;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
 }
 
 .wallet-adapter-modal-list-item {
-  @apply !bg-muted/50 !border !border-border !rounded-lg !transition-all !duration-200;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.75rem !important;
+  padding: 1rem !important;
+  transition: all 0.2s !important;
+  cursor: pointer !important;
 }
 
 .wallet-adapter-modal-list-item:hover {
-  @apply !bg-muted !border-primary/50;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(153, 69, 255, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+.wallet-adapter-button-trigger {
+  background: linear-gradient(135deg, #9945FF 0%, #14F195 100%) !important;
 }
 
 /* Scrollbar styling */

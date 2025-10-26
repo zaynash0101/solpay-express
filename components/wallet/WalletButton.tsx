@@ -91,22 +91,42 @@ export function WalletButton({
 
   if (!connected) {
     return (
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+      <button
         onClick={handleConnect}
         disabled={connecting}
-        className={`
-          flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold
-          bg-gradient-solana text-white shadow-lg
-          hover:brightness-110 transition-all duration-300
-          disabled:opacity-50 disabled:cursor-not-allowed
-          ${className}
-        `}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          padding: '0.625rem 1.5rem',
+          borderRadius: '0.5rem',
+          fontWeight: '600',
+          fontSize: '0.875rem',
+          background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
+          color: 'white',
+          border: 'none',
+          cursor: connecting ? 'not-allowed' : 'pointer',
+          opacity: connecting ? 0.6 : 1,
+          transition: 'all 0.3s',
+          boxShadow: '0 4px 12px rgba(153, 69, 255, 0.3)'
+        }}
+        onMouseEnter={(e) => {
+          if (!connecting) {
+            e.currentTarget.style.opacity = '0.9';
+            e.currentTarget.style.transform = 'scale(1.02)';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!connecting) {
+            e.currentTarget.style.opacity = '1';
+            e.currentTarget.style.transform = 'scale(1)';
+          }
+        }}
+        className={className}
       >
-        <Wallet className="w-5 h-5" />
+        <Wallet style={{ width: '20px', height: '20px' }} />
         {connecting ? 'Connecting...' : 'Connect Wallet'}
-      </motion.button>
+      </button>
     );
   }
 
