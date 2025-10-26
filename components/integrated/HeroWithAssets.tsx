@@ -341,7 +341,7 @@ export function HeroWithAssets() {
           minHeight: '500px'
         }}>
           
-          {/* Animated 3D Coin - CSS Animation */}
+          {/* Animated 3D Coin - CSS Animation (RESTORED ORIGINAL) */}
           <div
             style={{
               marginBottom: '2rem',
@@ -355,9 +355,7 @@ export function HeroWithAssets() {
               style={{
                 width: '120px',
                 height: '120px',
-                position: 'relative',
-                transformStyle: 'preserve-3d',
-                animation: 'coinRotate 4s linear infinite, coinFloat 3s ease-in-out infinite'
+                position: 'relative'
               }}
             >
               <img
@@ -368,6 +366,11 @@ export function HeroWithAssets() {
                   height: '100%',
                   objectFit: 'contain',
                   filter: 'drop-shadow(0 0 40px rgba(153, 69, 255, 0.6))'
+                }}
+                onError={(e) => {
+                  console.error('❌ Failed to load: /solana-coin.png');
+                  console.log('Trying alternative path...');
+                  e.currentTarget.src = '/public/solana-coin.png';
                 }}
               />
             </div>
@@ -577,6 +580,110 @@ export function HeroWithAssets() {
         </div>
       </section>
 
+      {/* INVOICE MOCKUP SHOWCASE */}
+      <section style={{ padding: '6rem 0', position: 'relative', zIndex: 1, background: 'rgba(255, 255, 255, 0.01)' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          
+          <h2 
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
+              fontWeight: 'bold',
+              textAlign: 'center',
+              marginBottom: '3rem',
+              color: 'white'
+            }}
+          >
+            See It In{' '}
+            <span 
+              style={{
+                background: 'linear-gradient(90deg, #9945FF 0%, #14F195 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                display: 'inline-block'
+              }}
+            >
+              Action
+            </span>
+          </h2>
+
+          {/* Glassmorphism Container for Invoice Mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '1.5rem',
+              padding: '2rem',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
+            {/* Gradient Glow Background */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '-50%',
+                left: '-50%',
+                width: '200%',
+                height: '200%',
+                background: 'radial-gradient(circle, rgba(153, 69, 255, 0.1) 0%, transparent 70%)',
+                pointerEvents: 'none'
+              }}
+            />
+
+            {/* Invoice Mockup Image */}
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <motion.img
+                src="/leonardo-invoice-mockup.png"
+                alt="SolPay Express Invoice Demo"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  maxWidth: '900px',
+                  margin: '0 auto',
+                  display: 'block',
+                  borderRadius: '1rem',
+                  boxShadow: '0 10px 40px rgba(153, 69, 255, 0.3)'
+                }}
+                onError={(e) => {
+                  console.error('Failed to load invoice mockup');
+                  // Fallback: show placeholder
+                  e.currentTarget.style.display = 'none';
+                  const parent = e.currentTarget.parentElement;
+                  if (parent) {
+                    parent.innerHTML = `
+                      <div style="
+                        padding: 4rem 2rem;
+                        text-align: center;
+                        background: rgba(255, 255, 255, 0.05);
+                        border-radius: 1rem;
+                        border: 2px dashed rgba(255, 255, 255, 0.2);
+                      ">
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 1.125rem;">
+                          📸 Invoice mockup image coming soon!
+                        </p>
+                        <p style="color: rgba(255, 255, 255, 0.4); font-size: 0.875rem; margin-top: 0.5rem;">
+                          Add leonardo-invoice-mockup.png to /public/ folder
+                        </p>
+                      </div>
+                    `;
+                  }
+                }}
+              />
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
       {/* FEATURES SECTION - Leonardo AI Icons */}
       <section style={{ padding: '6rem 0', position: 'relative', zIndex: 1, background: 'rgba(255, 255, 255, 0.02)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
@@ -683,9 +790,15 @@ export function HeroWithAssets() {
                       filter: 'brightness(0) invert(1)',
                       opacity: 1
                     }}
+                    onLoad={() => {
+                      console.log(`✅ Successfully loaded: ${feature.iconImage}`);
+                    }}
                     onError={(e) => {
-                      console.error(`Failed to load icon: ${feature.iconImage}`);
-                      e.currentTarget.style.display = 'none';
+                      console.error(`❌ Failed to load icon: ${feature.iconImage}`);
+                      console.log('Image element:', e.currentTarget);
+                      console.log('Attempted path:', feature.iconImage);
+                      // Don't hide - keep trying
+                      e.currentTarget.style.border = '2px solid red';
                     }}
                   />
                 </div>

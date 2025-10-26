@@ -223,28 +223,28 @@
   min-height: 100vh !important;
 }
 
-/* Coin Rotation (3D spin) */
-@keyframes coinRotate {
-  from {
-    transform: rotateY(0deg);
+/* Coin Animation - Combined Rotation + Float */
+@keyframes coinAnimation {
+  0% {
+    transform: translateY(0px) rotateY(0deg);
   }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
-/* Coin Float (up and down) */
-@keyframes coinFloat {
-  0%, 100% {
-    transform: translateY(0px);
+  25% {
+    transform: translateY(-20px) rotateY(90deg);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(0px) rotateY(180deg);
+  }
+  75% {
+    transform: translateY(-20px) rotateY(270deg);
+  }
+  100% {
+    transform: translateY(0px) rotateY(360deg);
   }
 }
 
 .rotating-coin {
   transform-style: preserve-3d;
+  animation: coinAnimation 4s ease-in-out infinite !important;
 }
 
 /* Scrollbar styling */
