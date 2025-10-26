@@ -1,0 +1,32 @@
+{
+  "name": "SolPay Express",
+  "short_name": "SolPay",
+  "description": "Lightning-fast P2P payments on Solana. Send USDC and SOL instantly with minimal fees.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F0F23",
+  "theme_color": "#9945FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "productivity"],
+  "screenshots": [
+    {
+      "src": "/hero-bg.webp",
+      "sizes": "1280x720",
+      "type": "image/webp"
+    }
+  ]
+}
