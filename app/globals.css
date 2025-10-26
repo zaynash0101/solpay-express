@@ -131,7 +131,7 @@
   }
 }
 
-/* Wallet adapter overrides - Clean Web3 Standard */
+/* Wallet adapter overrides - Minimal Centered Modal */
 .wallet-adapter-button {
   background: linear-gradient(135deg, #9945FF 0%, #14F195 100%) !important;
   font-weight: 600 !important;
@@ -144,33 +144,45 @@
 
 .wallet-adapter-button:hover:not([disabled]) {
   opacity: 0.9 !important;
-  transform: scale(1.02) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 24px rgba(153, 69, 255, 0.5) !important;
 }
 
 .wallet-adapter-modal-wrapper {
-  background: rgba(0, 0, 0, 0.8) !important;
-  backdrop-filter: blur(8px) !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
 }
 
 .wallet-adapter-modal {
-  background: #1a1a2e !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(15, 15, 35, 0.95) !important;
+  border: 1px solid rgba(153, 69, 255, 0.3) !important;
   border-radius: 1rem !important;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
   max-width: 400px !important;
+  width: 90% !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  padding: 2rem !important;
 }
 
 .wallet-adapter-modal-title {
   color: white !important;
-  font-size: 1.25rem !important;
-  font-weight: 600 !important;
-  margin-bottom: 1rem !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  text-align: center !important;
 }
 
 .wallet-adapter-modal-list {
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.5rem !important;
+  gap: 0.75rem !important;
 }
 
 .wallet-adapter-modal-list-item {
@@ -180,16 +192,59 @@
   padding: 1rem !important;
   transition: all 0.2s !important;
   cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
 }
 
 .wallet-adapter-modal-list-item:hover {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(153, 69, 255, 0.5) !important;
   transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(153, 69, 255, 0.3) !important;
 }
 
 .wallet-adapter-button-trigger {
   background: linear-gradient(135deg, #9945FF 0%, #14F195 100%) !important;
+}
+
+/* Hide any sidebar-style modals */
+.wallet-adapter-modal-wrapper[style*="right: 0"],
+.wallet-adapter-modal-wrapper[style*="left: 0"][style*="width"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.wallet-adapter-modal-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+}
+
+/* Coin Rotation (3D spin) */
+@keyframes coinRotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Coin Float (up and down) */
+@keyframes coinFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.rotating-coin {
+  transform-style: preserve-3d;
 }
 
 /* Scrollbar styling */

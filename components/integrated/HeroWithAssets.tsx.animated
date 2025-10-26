@@ -22,26 +22,6 @@ export function HeroWithAssets() {
   const { setVisible } = useWalletModal();
   const [scrollY, setScrollY] = useState(0);
 
-  // Debug logging
-  useEffect(() => {
-    console.log('🎯 HeroWithAssets mounted');
-    console.log('📁 Checking assets...');
-    
-    const assets = [
-      '/solana-coin.png',
-      '/icons/speed.png',
-      '/icons/security.png',
-      '/icons/low-fee.png'
-    ];
-    
-    assets.forEach(asset => {
-      const img = new Image();
-      img.onload = () => console.log(`✅ Loaded: ${asset}`);
-      img.onerror = () => console.error(`❌ Failed: ${asset}`);
-      img.src = asset;
-    });
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -341,40 +321,51 @@ export function HeroWithAssets() {
           minHeight: '500px'
         }}>
           
-          {/* Animated 3D Coin - CSS Animation */}
-          <div
+          {/* Animated 3D Coin */}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             style={{
               marginBottom: '2rem',
               display: 'flex',
-              justifyContent: 'center',
-              perspective: '1000px'
+              justifyContent: 'center'
             }}
           >
-            <div
-              className="rotating-coin"
+            <motion.div
+              animate={{
+                rotateY: [0, 360],
+                y: [0, -20, 0]
+              }}
+              transition={{
+                rotateY: { duration: 4, repeat: Infinity, ease: 'linear' },
+                y: { duration: 3, repeat: Infinity, ease: 'easeInOut' }
+              }}
               style={{
                 width: '120px',
                 height: '120px',
-                position: 'relative',
-                transformStyle: 'preserve-3d',
-                animation: 'coinRotate 4s linear infinite, coinFloat 3s ease-in-out infinite'
+                position: 'relative'
               }}
             >
-              <img
-                src="/solana-coin.png"
-                alt="Solana Coin"
+              <div
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'contain',
+                  backgroundImage: 'url(/solana-coin.png)',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
                   filter: 'drop-shadow(0 0 40px rgba(153, 69, 255, 0.6))'
                 }}
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Main Headline - SIMPLE VERSION */}
-          <h1
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             style={{
               fontSize: 'clamp(2.5rem, 8vw, 5rem)',
               fontWeight: 'bold',
@@ -395,10 +386,13 @@ export function HeroWithAssets() {
             >
               Speed of Solana
             </span>
-          </h1>
+          </motion.h1>
 
-          {/* Subheadline - SIMPLE VERSION */}
-          <p
+          {/* Subheadline */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             style={{
               fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
               color: 'rgba(255, 255, 255, 0.8)',
@@ -411,10 +405,13 @@ export function HeroWithAssets() {
             Instant USDC payments for Pakistani freelancers and businesses.
             <br />
             No borders. No delays. Just pure speed.
-          </p>
+          </motion.p>
 
-          {/* CTA Buttons - SIMPLE VERSION */}
-          <div
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             style={{
               display: 'flex',
               flexDirection: 'row',
@@ -481,10 +478,13 @@ export function HeroWithAssets() {
             >
               Watch Demo
             </button>
-          </div>
+          </motion.div>
 
-          {/* Stats Grid - SVG Icons - SIMPLE VERSION */}
-          <div
+          {/* Stats Grid - SVG Icons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -572,7 +572,7 @@ export function HeroWithAssets() {
                 </div>
               );
             })}
-          </div>
+          </motion.div>
 
         </div>
       </section>
@@ -631,8 +631,12 @@ export function HeroWithAssets() {
                 gradient: 'linear-gradient(135deg, #14F195 0%, #00C853 100%)'
               }
             ].map((feature, i) => (
-              <div
+              <motion.div
                 key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   backdropFilter: 'blur(10px)',
@@ -695,7 +699,7 @@ export function HeroWithAssets() {
                 <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.6 }}>
                   {feature.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
 
