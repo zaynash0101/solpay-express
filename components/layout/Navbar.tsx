@@ -1,9 +1,9 @@
 "use client"
 
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { WalletButton } from '@/components/wallet/WalletButton'
+import { WalletButtonPremium } from '@/components/wallet/WalletButtonPremium'
 
 export const Navbar = () => {
   return (
@@ -11,7 +11,8 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10"
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{ background: 'transparent' }}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
@@ -55,8 +56,8 @@ export const Navbar = () => {
             </Link>
           </div>
 
-          {/* Wallet Button */}
-          <WalletButton />
+          {/* Premium Wallet Button */}
+          <WalletButtonPremium variant="gradient" />
         </div>
       </div>
     </motion.nav>

@@ -14,12 +14,11 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+import { WalletButtonPremium } from '@/components/wallet/WalletButtonPremium';
 
 export function HeroWithAssets() {
   const router = useRouter();
-  const { connected, publicKey, disconnect } = useWallet();
-  const { setVisible } = useWalletModal();
+  const { connected, publicKey } = useWallet();
   const [scrollY, setScrollY] = useState(0);
 
   // Debug logging
@@ -82,9 +81,7 @@ export function HeroWithAssets() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          background: 'rgba(15, 15, 35, 0.8)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          background: 'transparent',
           padding: '1rem 0'
         }}
       >
@@ -98,6 +95,7 @@ export function HeroWithAssets() {
             alignItems: 'center'
           }}
         >
+          {/* Logo */}
           <div 
             style={{ 
               display: 'flex', 
@@ -111,140 +109,14 @@ export function HeroWithAssets() {
               src="/logo.png"
               alt="SolPay Express"
               style={{
-                width: '48px',
-                height: '48px',
-                objectFit: 'contain',
-                filter: 'drop-shadow(0 4px 12px rgba(153, 69, 255, 0.4))'
+                height: '60px',
+                objectFit: 'contain'
               }}
             />
-            <span 
-              style={{ 
-                fontSize: '1.5rem', 
-                fontWeight: '800',
-                background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                letterSpacing: '-0.02em'
-              }}
-            >
-              SolPay
-            </span>
           </div>
           
-          {/* Wallet Button - Complete New Design */}
-          <div>
-            {!connected ? (
-              <button
-                onClick={() => setVisible(true)}
-                style={{
-                  background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
-                  border: 'none',
-                  borderRadius: '12px',
-                  padding: '12px 24px',
-                  color: 'white',
-                  fontWeight: '600',
-                  fontSize: '0.95rem',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 12px rgba(153, 69, 255, 0.3)',
-                  fontFamily: 'inherit'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(153, 69, 255, 0.5)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(153, 69, 255, 0.3)';
-                }}
-              >
-                <svg 
-                  width="20" 
-                  height="20" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="5" width="18" height="14" rx="2" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                </svg>
-                Connect Wallet
-              </button>
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <button
-                  onClick={() => router.push('/dashboard')}
-                  style={{
-                    background: 'rgba(20, 241, 149, 0.1)',
-                    border: '1px solid rgba(20, 241, 149, 0.3)',
-                    borderRadius: '12px',
-                    padding: '12px 20px',
-                    color: '#14F195',
-                    fontWeight: '600',
-                    fontSize: '0.9rem',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    fontFamily: 'inherit'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(20, 241, 149, 0.15)';
-                    e.currentTarget.style.borderColor = 'rgba(20, 241, 149, 0.5)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(20, 241, 149, 0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(20, 241, 149, 0.3)';
-                  }}
-                >
-                  Dashboard
-                </button>
-                
-                <button
-                  onClick={() => disconnect()}
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '12px',
-                    padding: '12px 20px',
-                    color: 'white',
-                    fontWeight: '600',
-                    fontSize: '0.9rem',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    transition: 'all 0.3s ease',
-                    fontFamily: 'inherit'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '8px',
-                      height: '8px',
-                      borderRadius: '50%',
-                      background: '#14F195',
-                      boxShadow: '0 0 8px rgba(20, 241, 149, 0.6)'
-                    }}
-                  />
-                  {publicKey?.toString().slice(0, 4)}...{publicKey?.toString().slice(-4)}
-                </button>
-              </div>
-            )}
-          </div>
+          {/* Premium Wallet Button */}
+          <WalletButtonPremium variant="glass" />
         </div>
       </nav>
 
@@ -353,8 +225,8 @@ export function HeroWithAssets() {
             <div
               className="rotating-coin"
               style={{
-                width: '120px',
-                height: '120px',
+                width: '180px',
+                height: '180px',
                 position: 'relative'
               }}
             >
