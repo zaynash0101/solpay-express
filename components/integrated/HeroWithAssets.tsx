@@ -582,105 +582,132 @@ export function HeroWithAssets() {
 
       {/* INVOICE MOCKUP SHOWCASE */}
       <section style={{ padding: '6rem 0', position: 'relative', zIndex: 1, background: 'rgba(255, 255, 255, 0.01)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
-          
-          <h2 
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 3rem)',
-              fontWeight: 'bold',
-              textAlign: 'center',
-              marginBottom: '3rem',
-              color: 'white'
-            }}
-          >
-            See It In{' '}
-            <span 
+        <div style={{ position: 'relative', width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '5rem 2rem' }}>
+          {/* Section Header */}
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 
               style={{
-                background: 'linear-gradient(90deg, #9945FF 0%, #14F195 100%)',
+                fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                fontWeight: 'bold',
+                marginBottom: '1rem',
+                background: 'linear-gradient(90deg, #c084fc 0%, #f472b6 50%, #4ade80 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                display: 'inline-block'
+                backgroundClip: 'text'
               }}
             >
-              Action
-            </span>
-          </h2>
+              See SolPay Express in Action
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: 'rgba(156, 163, 175, 1)' }}>
+              Professional invoice creation with instant Solana payments
+            </p>
+          </div>
 
-          {/* Glassmorphism Container for Invoice Mockup */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '1.5rem',
-              padding: '2rem',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-              position: 'relative',
-              overflow: 'hidden'
-            }}
-          >
-            {/* Gradient Glow Background */}
-            <div
+          {/* Image Showcase Container */}
+          <div style={{ position: 'relative' }}>
+            {/* Glassmorphism container with glow effect */}
+            <div 
               style={{
-                position: 'absolute',
-                top: '-50%',
-                left: '-50%',
-                width: '200%',
-                height: '200%',
-                background: 'radial-gradient(circle, rgba(153, 69, 255, 0.1) 0%, transparent 70%)',
-                pointerEvents: 'none'
+                position: 'relative',
+                borderRadius: '1.5rem',
+                overflow: 'hidden',
+                border: '1px solid rgba(168, 85, 247, 0.3)',
+                boxShadow: '0 0 80px rgba(153, 69, 255, 0.4)',
+                background: 'linear-gradient(135deg, rgba(88, 28, 135, 0.2) 0%, transparent 50%, rgba(20, 83, 45, 0.2) 100%)',
+                backdropFilter: 'blur(8px)',
+                padding: '2rem',
+                transition: 'all 0.5s ease'
               }}
-            />
-
-            {/* Invoice Mockup Image */}
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <motion.img
-                src="/leonardo-invoice-mockup.png"
-                alt="SolPay Express Invoice Demo"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 120px rgba(153, 69, 255, 0.6)';
+                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 80px rgba(153, 69, 255, 0.4)';
+                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.3)';
+              }}
+            >
+              
+              {/* Animated gradient background */}
+              <div 
                 style={{
-                  width: '100%',
-                  height: 'auto',
-                  maxWidth: '900px',
-                  margin: '0 auto',
-                  display: 'block',
-                  borderRadius: '1rem',
-                  boxShadow: '0 10px 40px rgba(153, 69, 255, 0.3)'
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, transparent 50%, rgba(34, 197, 94, 0.1) 100%)',
+                  opacity: 0.5,
+                  pointerEvents: 'none',
+                  transition: 'opacity 0.5s ease'
                 }}
-                onError={(e) => {
-                  console.error('Failed to load invoice mockup');
-                  // Fallback: show placeholder
-                  e.currentTarget.style.display = 'none';
-                  const parent = e.currentTarget.parentElement;
-                  if (parent) {
-                    parent.innerHTML = `
-                      <div style="
-                        padding: 4rem 2rem;
-                        text-align: center;
-                        background: rgba(255, 255, 255, 0.05);
-                        border-radius: 1rem;
-                        border: 2px dashed rgba(255, 255, 255, 0.2);
-                      ">
-                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 1.125rem;">
-                          📸 Invoice mockup image coming soon!
-                        </p>
-                        <p style="color: rgba(255, 255, 255, 0.4); font-size: 0.875rem; margin-top: 0.5rem;">
-                          Add leonardo-invoice-mockup.png to /public/ folder
-                        </p>
-                      </div>
-                    `;
-                  }
+              />
+              
+              {/* The actual mockup image */}
+              <div style={{ position: 'relative', zIndex: 10 }}>
+                <motion.img
+                  src="/leonardo-invoice-mockup.png"
+                  alt="SolPay Express Invoice Dashboard - Professional invoice creation with Solana payment integration"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.5 }}
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    borderRadius: '1rem',
+                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                    display: 'block'
+                  }}
+                  onError={(e) => {
+                    console.error('Failed to load invoice mockup');
+                  }}
+                />
+              </div>
+
+              {/* Corner accent decorations */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: '8rem',
+                  height: '8rem',
+                  background: 'rgba(168, 85, 247, 0.2)',
+                  filter: 'blur(60px)',
+                  borderRadius: '50%',
+                  pointerEvents: 'none'
+                }}
+              />
+              <div 
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '8rem',
+                  height: '8rem',
+                  background: 'rgba(34, 197, 94, 0.2)',
+                  filter: 'blur(60px)',
+                  borderRadius: '50%',
+                  pointerEvents: 'none'
                 }}
               />
             </div>
-          </motion.div>
 
+            {/* Floating badge/label */}
+            <div 
+              style={{
+                position: 'absolute',
+                top: '-1rem',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                padding: '0.5rem 1.5rem',
+                background: 'linear-gradient(90deg, #9333ea 0%, #ec4899 100%)',
+                borderRadius: '9999px',
+                fontSize: '0.875rem',
+                fontWeight: '600',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
+                color: 'white'
+              }}
+            >
+              ✨ Powered by Solana
+            </div>
+          </div>
         </div>
       </section>
 
@@ -723,19 +750,22 @@ export function HeroWithAssets() {
                 iconImage: '/icons/speed.png',
                 title: 'Lightning Fast',
                 description: 'Transactions confirm in under 2 seconds. No more waiting days for payments.',
-                gradient: 'linear-gradient(135deg, #9945FF 0%, #FF6B9D 100%)'
+                glowColor: 'rgba(153, 69, 255, 0.6)',
+                glowColorHover: 'rgba(153, 69, 255, 0.9)'
               },
               {
                 iconImage: '/icons/security.png',
                 title: 'Battle-Tested Security',
                 description: 'Built on Solana\'s proven blockchain. Your transactions are secure and transparent.',
-                gradient: 'linear-gradient(135deg, #00D4FF 0%, #0099FF 100%)'
+                glowColor: 'rgba(0, 212, 255, 0.6)',
+                glowColorHover: 'rgba(0, 212, 255, 0.9)'
               },
               {
                 iconImage: '/icons/low-fee.png',
                 title: 'Minimal Fees',
                 description: 'Pay less than $0.01 per transaction. Save 5-10% compared to traditional methods.',
-                gradient: 'linear-gradient(135deg, #14F195 0%, #00C853 100%)'
+                glowColor: 'rgba(20, 241, 149, 0.6)',
+                glowColorHover: 'rgba(20, 241, 149, 0.9)'
               }
             ].map((feature, i) => (
               <div
@@ -760,35 +790,32 @@ export function HeroWithAssets() {
                   e.currentTarget.style.transform = 'scale(1)';
                 }}
               >
+                {/* Icon - No background container, just the icon with glow */}
                 <div 
                   style={{
-                    width: '80px',
-                    height: '80px',
-                    borderRadius: '1rem',
-                    background: feature.gradient,
                     display: 'flex',
-                    alignItems: 'center',
                     justifyContent: 'center',
-                    marginBottom: '1.5rem',
-                    padding: '1rem',
-                    transition: 'transform 0.3s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
+                    marginBottom: '2rem'
                   }}
                 >
                   <img
                     src={feature.iconImage}
                     alt={feature.title}
                     style={{
-                      width: '48px',
-                      height: '48px',
+                      width: '120px',
+                      height: '120px',
                       objectFit: 'contain',
-                      filter: 'brightness(0) invert(1)',
+                      filter: `drop-shadow(0 0 25px ${feature.glowColor})`,
+                      transition: 'all 0.3s ease',
                       opacity: 1
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.filter = `drop-shadow(0 0 40px ${feature.glowColorHover})`;
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.filter = `drop-shadow(0 0 25px ${feature.glowColor})`;
+                      e.currentTarget.style.transform = 'scale(1)';
                     }}
                     onLoad={() => {
                       console.log(`✅ Successfully loaded: ${feature.iconImage}`);
