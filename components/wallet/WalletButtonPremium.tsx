@@ -92,9 +92,9 @@ export function WalletButtonPremium({
 
   // Connect Button Styles
   const buttonStyles = {
-    gradient: 'bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:shadow-lg hover:shadow-purple-500/50',
-    outline: 'border-2 border-purple-500/50 hover:border-purple-500 hover:bg-purple-500/10',
-    glass: 'bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10'
+    gradient: 'bg-[#9945FF] hover:bg-[#8839EE] hover:shadow-lg hover:shadow-purple-500/20',
+    outline: 'border border-[#27282D] hover:border-[#9945FF] hover:bg-[#151619]',
+    glass: 'bg-[#151619] backdrop-blur-sm border border-[#27282D] hover:bg-[#1C1D21] hover:border-[#9945FF]'
   };
 
   if (!connected) {

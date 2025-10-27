@@ -14,32 +14,13 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletButtonPremium } from '@/components/wallet/WalletButtonPremium';
+import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 
 export function HeroWithAssets() {
   const router = useRouter();
-  const { connected, publicKey } = useWallet();
+  const { connected, publicKey, disconnect } = useWallet();
+  const { setVisible } = useWalletModal();
   const [scrollY, setScrollY] = useState(0);
-
-  // Debug logging
-  useEffect(() => {
-    console.log('🎯 HeroWithAssets mounted');
-    console.log('📁 Checking assets...');
-    
-    const assets = [
-      '/solana-coin.png',
-      '/icons/speed.png',
-      '/icons/security.png',
-      '/icons/low-fee.png'
-    ];
-    
-    assets.forEach(asset => {
-      const img = new Image();
-      img.onload = () => console.log(`✅ Loaded: ${asset}`);
-      img.onerror = () => console.error(`❌ Failed: ${asset}`);
-      img.src = asset;
-    });
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -81,7 +62,9 @@ export function HeroWithAssets() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          background: 'transparent',
+          background: 'rgba(15, 15, 35, 0.8)',
+          backdropFilter: 'blur(12px)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
           padding: '1rem 0'
         }}
       >
@@ -95,7 +78,6 @@ export function HeroWithAssets() {
             alignItems: 'center'
           }}
         >
-          {/* Logo */}
           <div 
             style={{ 
               display: 'flex', 
@@ -109,14 +91,140 @@ export function HeroWithAssets() {
               src="/logo.png"
               alt="SolPay Express"
               style={{
-                height: '60px',
-                objectFit: 'contain'
+                width: '48px',
+                height: '48px',
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 4px 12px rgba(153, 69, 255, 0.4))'
               }}
             />
+            <span 
+              style={{ 
+                fontSize: '1.5rem', 
+                fontWeight: '800',
+                background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                letterSpacing: '-0.02em'
+              }}
+            >
+              SolPay
+            </span>
           </div>
           
-          {/* Premium Wallet Button */}
-          <WalletButtonPremium variant="glass" />
+          {/* Wallet Button - Complete New Design */}
+          <div>
+            {!connected ? (
+              <button
+                onClick={() => setVisible(true)}
+                style={{
+                  background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
+                  border: 'none',
+                  borderRadius: '12px',
+                  padding: '12px 24px',
+                  color: 'white',
+                  fontWeight: '600',
+                  fontSize: '0.95rem',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 12px rgba(153, 69, 255, 0.3)',
+                  fontFamily: 'inherit'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(153, 69, 255, 0.5)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(153, 69, 255, 0.3)';
+                }}
+              >
+                <svg 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Connect Wallet
+              </button>
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <button
+                  onClick={() => router.push('/dashboard')}
+                  style={{
+                    background: 'rgba(20, 241, 149, 0.1)',
+                    border: '1px solid rgba(20, 241, 149, 0.3)',
+                    borderRadius: '12px',
+                    padding: '12px 20px',
+                    color: '#14F195',
+                    fontWeight: '600',
+                    fontSize: '0.9rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    fontFamily: 'inherit'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(20, 241, 149, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgba(20, 241, 149, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(20, 241, 149, 0.1)';
+                    e.currentTarget.style.borderColor = 'rgba(20, 241, 149, 0.3)';
+                  }}
+                >
+                  Dashboard
+                </button>
+                
+                <button
+                  onClick={() => disconnect()}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '12px',
+                    padding: '12px 20px',
+                    color: 'white',
+                    fontWeight: '600',
+                    fontSize: '0.9rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    transition: 'all 0.3s ease',
+                    fontFamily: 'inherit'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#14F195',
+                      boxShadow: '0 0 8px rgba(20, 241, 149, 0.6)'
+                    }}
+                  />
+                  {publicKey?.toString().slice(0, 4)}...{publicKey?.toString().slice(-4)}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
 
@@ -213,43 +321,51 @@ export function HeroWithAssets() {
           minHeight: '500px'
         }}>
           
-          {/* Animated 3D Coin - CSS Animation (RESTORED ORIGINAL) */}
-          <div
+          {/* Animated 3D Coin */}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             style={{
               marginBottom: '2rem',
               display: 'flex',
-              justifyContent: 'center',
-              perspective: '1000px'
+              justifyContent: 'center'
             }}
           >
-            <div
-              className="rotating-coin"
+            <motion.div
+              animate={{
+                rotateY: [0, 360],
+                y: [0, -20, 0]
+              }}
+              transition={{
+                rotateY: { duration: 4, repeat: Infinity, ease: 'linear' },
+                y: { duration: 3, repeat: Infinity, ease: 'easeInOut' }
+              }}
               style={{
-                width: '180px',
-                height: '180px',
+                width: '120px',
+                height: '120px',
                 position: 'relative'
               }}
             >
-              <img
-                src="/solana-coin.png"
-                alt="Solana Coin"
+              <div
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'contain',
+                  backgroundImage: 'url(/solana-coin.png)',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
                   filter: 'drop-shadow(0 0 40px rgba(153, 69, 255, 0.6))'
                 }}
-                onError={(e) => {
-                  console.error('❌ Failed to load: /solana-coin.png');
-                  console.log('Trying alternative path...');
-                  e.currentTarget.src = '/public/solana-coin.png';
-                }}
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Main Headline - SIMPLE VERSION */}
-          <h1
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             style={{
               fontSize: 'clamp(2.5rem, 8vw, 5rem)',
               fontWeight: 'bold',
@@ -270,10 +386,13 @@ export function HeroWithAssets() {
             >
               Speed of Solana
             </span>
-          </h1>
+          </motion.h1>
 
-          {/* Subheadline - SIMPLE VERSION */}
-          <p
+          {/* Subheadline */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             style={{
               fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
               color: 'rgba(255, 255, 255, 0.8)',
@@ -286,10 +405,13 @@ export function HeroWithAssets() {
             Instant USDC payments for Pakistani freelancers and businesses.
             <br />
             No borders. No delays. Just pure speed.
-          </p>
+          </motion.p>
 
-          {/* CTA Buttons - SIMPLE VERSION */}
-          <div
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             style={{
               display: 'flex',
               flexDirection: 'row',
@@ -356,10 +478,13 @@ export function HeroWithAssets() {
             >
               Watch Demo
             </button>
-          </div>
+          </motion.div>
 
-          {/* Stats Grid - SVG Icons - SIMPLE VERSION */}
-          <div
+          {/* Stats Grid - SVG Icons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -447,139 +572,8 @@ export function HeroWithAssets() {
                 </div>
               );
             })}
-          </div>
+          </motion.div>
 
-        </div>
-      </section>
-
-      {/* INVOICE MOCKUP SHOWCASE */}
-      <section style={{ padding: '6rem 0', position: 'relative', zIndex: 1, background: 'rgba(255, 255, 255, 0.01)' }}>
-        <div style={{ position: 'relative', width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '5rem 2rem' }}>
-          {/* Section Header */}
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 
-              style={{
-                fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-                fontWeight: 'bold',
-                marginBottom: '1rem',
-                background: 'linear-gradient(90deg, #c084fc 0%, #f472b6 50%, #4ade80 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
-            >
-              See SolPay Express in Action
-            </h2>
-            <p style={{ fontSize: '1.25rem', color: 'rgba(156, 163, 175, 1)' }}>
-              Professional invoice creation with instant Solana payments
-            </p>
-          </div>
-
-          {/* Image Showcase Container */}
-          <div style={{ position: 'relative' }}>
-            {/* Glassmorphism container with glow effect */}
-            <div 
-              style={{
-                position: 'relative',
-                borderRadius: '1.5rem',
-                overflow: 'hidden',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
-                boxShadow: '0 0 80px rgba(153, 69, 255, 0.4)',
-                background: 'linear-gradient(135deg, rgba(88, 28, 135, 0.2) 0%, transparent 50%, rgba(20, 83, 45, 0.2) 100%)',
-                backdropFilter: 'blur(8px)',
-                padding: '2rem',
-                transition: 'all 0.5s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 0 120px rgba(153, 69, 255, 0.6)';
-                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 0 80px rgba(153, 69, 255, 0.4)';
-                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.3)';
-              }}
-            >
-              
-              {/* Animated gradient background */}
-              <div 
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, transparent 50%, rgba(34, 197, 94, 0.1) 100%)',
-                  opacity: 0.5,
-                  pointerEvents: 'none',
-                  transition: 'opacity 0.5s ease'
-                }}
-              />
-              
-              {/* The actual mockup image */}
-              <div style={{ position: 'relative', zIndex: 10 }}>
-                <motion.img
-                  src="/leonardo-invoice-mockup.png"
-                  alt="SolPay Express Invoice Dashboard - Professional invoice creation with Solana payment integration"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.5 }}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    borderRadius: '1rem',
-                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-                    display: 'block'
-                  }}
-                  onError={(e) => {
-                    console.error('Failed to load invoice mockup');
-                  }}
-                />
-              </div>
-
-              {/* Corner accent decorations */}
-              <div 
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  width: '8rem',
-                  height: '8rem',
-                  background: 'rgba(168, 85, 247, 0.2)',
-                  filter: 'blur(60px)',
-                  borderRadius: '50%',
-                  pointerEvents: 'none'
-                }}
-              />
-              <div 
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: '8rem',
-                  height: '8rem',
-                  background: 'rgba(34, 197, 94, 0.2)',
-                  filter: 'blur(60px)',
-                  borderRadius: '50%',
-                  pointerEvents: 'none'
-                }}
-              />
-            </div>
-
-            {/* Floating badge/label */}
-            <div 
-              style={{
-                position: 'absolute',
-                top: '-1rem',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                padding: '0.5rem 1.5rem',
-                background: 'linear-gradient(90deg, #9333ea 0%, #ec4899 100%)',
-                borderRadius: '9999px',
-                fontSize: '0.875rem',
-                fontWeight: '600',
-                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
-                color: 'white'
-              }}
-            >
-              ✨ Powered by Solana
-            </div>
-          </div>
         </div>
       </section>
 
@@ -640,8 +634,12 @@ export function HeroWithAssets() {
                 glowColorHover: 'rgba(20, 241, 149, 0.9)'
               }
             ].map((feature, i) => (
-              <div
+              <motion.div
                 key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   backdropFilter: 'blur(10px)',
@@ -662,14 +660,7 @@ export function HeroWithAssets() {
                   e.currentTarget.style.transform = 'scale(1)';
                 }}
               >
-                {/* Icon - No background container, just the icon with glow */}
-                <div 
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginBottom: '2rem'
-                  }}
-                >
+                <div style={{ marginBottom: '2rem' }}>
                   <img
                     src={feature.iconImage}
                     alt={feature.title}
@@ -707,7 +698,7 @@ export function HeroWithAssets() {
                 <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.6 }}>
                   {feature.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
 

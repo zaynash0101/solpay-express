@@ -4,25 +4,35 @@
 
 @layer base {
   :root {
+    /* Professional Single-Accent Color System */
+    --color-accent: #9945FF;
+    --color-accent-hover: #8839EE;
+    
+    --color-bg-primary: #0A0B0F;
+    --color-bg-secondary: #151619;
+    --color-bg-elevated: #1C1D21;
+    
+    --color-border: #27282D;
+    --color-border-hover: #3A3B40;
+    
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #9CA3AF;
+    --color-text-tertiary: #6B7280;
+    --color-text-muted: #4B5563;
+    
+    /* Semantic Colors */
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-error: #EF4444;
+    --color-info: #3B82F6;
+    
+    /* Legacy Shadcn Variables */
     --background: 222 47% 11%;
     --foreground: 210 40% 98%;
     --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 15%;
-    --popover-foreground: 210 40% 98%;
     --primary: 263 70% 64%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 163 94% 54%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 189 100% 50%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
     --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 263 70% 64%;
     --radius: 1rem;
   }
 }
@@ -32,9 +42,10 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    /* Background pattern from Leonardo AI */
+    /* Background pattern */
     background-image: url('/patterns/grid-bg.jpg');
     background-repeat: repeat;
     background-size: 512px 512px;
@@ -42,14 +53,9 @@
     background-attachment: fixed;
   }
   
-  /* Overlay to reduce pattern opacity */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(15, 15, 35, 0.95), rgba(15, 15, 35, 0.98));
-    pointer-events: none;
-    z-index: -1;
+  /* Remove default button gradients globally */
+  button {
+    background-image: none !important;
   }
 }
 
@@ -64,24 +70,9 @@
     @apply glass transition-all duration-300 hover:bg-white/10 hover:border-white/20;
   }
   
-  .gradient-text {
-    @apply bg-gradient-solana bg-clip-text text-transparent;
-  }
-  
-  .gradient-border {
-    position: relative;
-  }
-  
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+  /* Accent text utility */
+  .accent-text {
+    color: var(--color-accent);
   }
   
   .animate-float {
@@ -133,7 +124,7 @@
 
 /* Wallet adapter overrides - Minimal Centered Modal */
 .wallet-adapter-button {
-  background: linear-gradient(135deg, #9945FF 0%, #14F195 100%) !important;
+  background: var(--color-accent) !important;
   font-weight: 600 !important;
   border-radius: 0.5rem !important;
   transition: all 0.3s !important;
@@ -143,9 +134,8 @@
 }
 
 .wallet-adapter-button:hover:not([disabled]) {
-  opacity: 0.9 !important;
-  transform: scale(1.05) !important;
-  box-shadow: 0 8px 24px rgba(153, 69, 255, 0.5) !important;
+  background: var(--color-accent-hover) !important;
+  box-shadow: 0 8px 24px rgba(153, 69, 255, 0.2) !important;
 }
 
 .wallet-adapter-modal-wrapper {
@@ -160,8 +150,8 @@
 }
 
 .wallet-adapter-modal {
-  background: rgba(15, 15, 35, 0.95) !important;
-  border: 1px solid rgba(153, 69, 255, 0.3) !important;
+  background: var(--color-bg-secondary) !important;
+  border: 1px solid var(--color-border) !important;
   border-radius: 1rem !important;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
   max-width: 400px !important;
@@ -186,8 +176,8 @@
 }
 
 .wallet-adapter-modal-list-item {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: var(--color-bg-elevated) !important;
+  border: 1px solid var(--color-border) !important;
   border-radius: 0.75rem !important;
   padding: 1rem !important;
   transition: all 0.2s !important;
@@ -198,14 +188,13 @@
 }
 
 .wallet-adapter-modal-list-item:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-color: rgba(153, 69, 255, 0.5) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 12px rgba(153, 69, 255, 0.3) !important;
+  background: var(--color-bg-elevated) !important;
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 4px 12px rgba(153, 69, 255, 0.15) !important;
 }
 
 .wallet-adapter-button-trigger {
-  background: linear-gradient(135deg, #9945FF 0%, #14F195 100%) !important;
+  background: var(--color-accent) !important;
 }
 
 /* Hide any sidebar-style modals */

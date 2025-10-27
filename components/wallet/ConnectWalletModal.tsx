@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { X, CheckCircle2, ArrowRight, ExternalLink } from 'lucide-react';
+import { X, ChevronRight, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface ConnectWalletModalProps {
@@ -13,13 +13,8 @@ interface ConnectWalletModalProps {
 interface WalletOption {
   name: string;
   adapter: string;
-  iconGradient: string;
-  badge: {
-    text: string;
-    bg: string;
-    color: string;
-  };
-  hoverBorder: string;
+  iconUrl: string;
+  badge: string;
   downloadUrl: string;
 }
 
@@ -27,37 +22,22 @@ const SUPPORTED_WALLETS: WalletOption[] = [
   {
     name: 'Phantom',
     adapter: 'Phantom',
-    iconGradient: 'linear-gradient(135deg, #AB47BC 0%, #7B1FA2 100%)',
-    badge: {
-      text: 'Most Popular',
-      bg: 'rgba(171, 71, 188, 0.2)',
-      color: '#E1BEE7'
-    },
-    hoverBorder: 'rgba(171, 71, 188, 0.4)',
+    iconUrl: 'https://avatars.githubusercontent.com/u/78782331?s=200&v=4',
+    badge: 'Most Popular',
     downloadUrl: 'https://phantom.app/'
   },
   {
     name: 'Solflare',
     adapter: 'Solflare',
-    iconGradient: 'linear-gradient(135deg, #FC8E36 0%, #F7931E 100%)',
-    badge: {
-      text: 'Secure',
-      bg: 'rgba(252, 142, 54, 0.2)',
-      color: '#FFE0B2'
-    },
-    hoverBorder: 'rgba(252, 142, 54, 0.4)',
+    iconUrl: 'https://avatars.githubusercontent.com/u/82908762?s=200&v=4',
+    badge: 'Secure',
     downloadUrl: 'https://solflare.com/'
   },
   {
     name: 'Backpack',
     adapter: 'Backpack',
-    iconGradient: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
-    badge: {
-      text: 'New',
-      bg: 'rgba(239, 68, 68, 0.2)',
-      color: '#FFCDD2'
-    },
-    hoverBorder: 'rgba(239, 68, 68, 0.4)',
+    iconUrl: 'https://pbs.twimg.com/profile_images/1593304942430547970/k0hlNo_V_400x400.jpg',
+    badge: 'Multi-chain',
     downloadUrl: 'https://backpack.app/'
   }
 ];
@@ -103,19 +83,19 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop - Solid dark with blur */}
+          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25 }}
             onClick={onClose}
             style={{
               position: 'fixed',
               inset: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              backgroundColor: 'rgba(0, 0, 0, 0.85)',
               backdropFilter: 'blur(8px)',
-              zIndex: 9998
+              zIndex: 50
             }}
           />
 
@@ -123,26 +103,28 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
           <div style={{
             position: 'fixed',
             inset: 0,
-            zIndex: 9999,
+            zIndex: 51,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '16px'
+            padding: '16px',
+            pointerEvents: 'none'
           }}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '440px',
-                backgroundColor: '#0A0B0D',
-                borderRadius: '24px',
-                border: '1px solid rgba(153, 69, 255, 0.2)',
-                padding: '32px',
-                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.6)'
+                maxWidth: '420px',
+                backgroundColor: '#1A1B23',
+                borderRadius: '28px',
+                border: '1px solid #2D2E3A',
+                padding: '40px 32px',
+                boxShadow: '0 25px 80px rgba(0, 0, 0, 0.5), 0 10px 40px rgba(0, 0, 0, 0.3)',
+                pointerEvents: 'auto'
               }}
             >
               {/* Close Button */}
@@ -150,47 +132,57 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
                 onClick={onClose}
                 style={{
                   position: 'absolute',
-                  top: '16px',
-                  right: '16px',
-                  width: '32px',
-                  height: '32px',
+                  top: '20px',
+                  right: '20px',
+                  width: '36px',
+                  height: '36px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   cursor: 'pointer',
-                  transition: 'background-color 150ms ease'
+                  transition: 'all 150ms ease'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)'}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                  const icon = e.currentTarget.querySelector('svg') as SVGElement;
+                  if (icon) icon.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.04)';
+                  const icon = e.currentTarget.querySelector('svg') as SVGElement;
+                  if (icon) icon.style.color = '#8B92A6';
+                }}
               >
-                <X style={{ width: '18px', height: '18px', color: '#94A3B8' }} />
+                <X style={{ width: '18px', height: '18px', color: '#8B92A6', transition: 'color 150ms ease' }} />
               </button>
 
               {/* Header */}
               <h2 style={{
-                fontSize: '28px',
-                fontWeight: 700,
+                fontSize: '32px',
+                fontWeight: 800,
                 color: '#FFFFFF',
-                marginBottom: '8px',
-                lineHeight: 1.2
+                marginBottom: '12px',
+                lineHeight: 1.2,
+                textAlign: 'center'
               }}>
                 Connect Wallet
               </h2>
 
               <p style={{
-                fontSize: '14px',
-                color: '#94A3B8',
-                marginBottom: '24px',
-                lineHeight: 1.5
+                fontSize: '15px',
+                color: '#8B92A6',
+                marginBottom: '32px',
+                lineHeight: 1.5,
+                textAlign: 'center'
               }}>
                 Choose your preferred Solana wallet
               </p>
 
               {/* Wallet Cards */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '28px' }}>
                 {SUPPORTED_WALLETS.map((wallet) => {
                   const installed = isWalletInstalled(wallet.adapter);
                   const isConnecting = connecting && selectedWallet === wallet.adapter;
@@ -198,131 +190,111 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
                   return (
                     <motion.button
                       key={wallet.name}
-                      onClick={() => !isConnecting && handleWalletSelect(wallet.adapter)}
-                      disabled={isConnecting}
-                      whileHover={installed ? { scale: 1.02 } : {}}
-                      transition={{ duration: 0.15, ease: 'easeOut' }}
+                      onClick={() => installed && !isConnecting && handleWalletSelect(wallet.adapter)}
+                      disabled={!installed || isConnecting}
+                      whileHover={installed ? { scale: 1.015 } : {}}
+                      transition={{ duration: 0.18, ease: 'easeOut' }}
                       style={{
                         width: '100%',
-                        height: '72px',
+                        minHeight: '76px',
                         display: 'flex',
                         alignItems: 'center',
-                        padding: '16px 20px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                        border: `1px solid ${isConnecting ? wallet.hoverBorder : 'rgba(255, 255, 255, 0.08)'}`,
+                        padding: '20px',
+                        gap: '16px',
+                        backgroundColor: '#23242E',
+                        border: '1px solid #2D2E3A',
                         borderRadius: '16px',
-                        cursor: installed ? 'pointer' : 'default',
+                        cursor: installed ? 'pointer' : 'not-allowed',
                         transition: 'all 200ms ease',
                         opacity: installed ? 1 : 0.5
                       }}
                       onMouseEnter={(e) => {
                         if (installed && !isConnecting) {
-                          e.currentTarget.style.borderColor = wallet.hoverBorder;
-                          e.currentTarget.style.boxShadow = `0 0 20px ${wallet.hoverBorder.replace('0.4', '0.3')}`;
+                          e.currentTarget.style.backgroundColor = '#2A2B35';
+                          e.currentTarget.style.borderColor = '#3D3E4A';
+                          const arrow = e.currentTarget.querySelector('.arrow-icon') as HTMLElement;
+                          if (arrow) {
+                            arrow.style.color = '#FFFFFF';
+                            arrow.style.transform = 'translateX(4px)';
+                          }
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (!isConnecting) {
-                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                          e.currentTarget.style.boxShadow = 'none';
+                          e.currentTarget.style.backgroundColor = '#23242E';
+                          e.currentTarget.style.borderColor = '#2D2E3A';
+                          const arrow = e.currentTarget.querySelector('.arrow-icon') as HTMLElement;
+                          if (arrow) {
+                            arrow.style.color = '#9CA3AF';
+                            arrow.style.transform = 'translateX(0)';
+                          }
                         }
                       }}
                     >
-                      {/* Icon Container */}
-                      <div style={{
-                        width: '48px',
-                        height: '48px',
-                        borderRadius: '12px',
-                        background: wallet.iconGradient,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        <span style={{ fontSize: '24px' }}>
-                          {wallet.name === 'Phantom' && '👻'}
-                          {wallet.name === 'Solflare' && '🔥'}
-                          {wallet.name === 'Backpack' && '🎒'}
-                        </span>
-                      </div>
+                      {/* Real Wallet Logo */}
+                      <img
+                        src={wallet.iconUrl}
+                        alt={`${wallet.name} Wallet`}
+                        style={{
+                          width: '48px',
+                          height: '48px',
+                          borderRadius: '12px',
+                          flexShrink: 0,
+                          objectFit: 'cover'
+                        }}
+                      />
 
                       {/* Wallet Info */}
                       <div style={{
                         flex: 1,
-                        marginLeft: '16px',
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'flex-start'
+                        alignItems: 'flex-start',
+                        gap: '4px'
                       }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <span style={{
-                            fontSize: '16px',
-                            fontWeight: 600,
-                            color: '#FFFFFF'
-                          }}>
-                            {wallet.name}
-                          </span>
-                          {installed && (
-                            <CheckCircle2 style={{ width: '16px', height: '16px', color: '#10B981' }} />
-                          )}
-                        </div>
-
-                        {/* Status Badge */}
-                        <div style={{
-                          marginTop: '4px',
-                          padding: '2px 8px',
-                          backgroundColor: installed ? wallet.badge.bg : 'rgba(100, 116, 139, 0.2)',
-                          borderRadius: '4px',
-                          fontSize: '12px',
-                          fontWeight: 500,
-                          color: installed ? wallet.badge.color : '#94A3B8'
+                        <span style={{
+                          fontSize: '18px',
+                          fontWeight: 600,
+                          color: '#FFFFFF',
+                          lineHeight: 1
                         }}>
-                          {installed ? wallet.badge.text : 'Not Installed'}
-                        </div>
+                          {wallet.name}
+                        </span>
+
+                        {/* Badge */}
+                        <span style={{
+                          fontSize: '14px',
+                          color: '#9CA3AF',
+                          lineHeight: 1
+                        }}>
+                          {installed ? wallet.badge : 'Not Installed'}
+                        </span>
                       </div>
 
-                      {/* Right Action */}
-                      {!installed ? (
-                        <a
-                          href={wallet.downloadUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          style={{
-                            padding: '6px 12px',
-                            backgroundColor: 'rgba(6, 182, 212, 0.1)',
-                            border: '1px solid rgba(6, 182, 212, 0.3)',
-                            borderRadius: '8px',
-                            fontSize: '13px',
-                            fontWeight: 500,
-                            color: '#22D3EE',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px',
-                            transition: 'all 150ms ease'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.2)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.1)';
-                          }}
-                        >
-                          Install
-                          <ExternalLink style={{ width: '12px', height: '12px' }} />
-                        </a>
-                      ) : isConnecting ? (
-                        <div style={{
-                          width: '20px',
-                          height: '20px',
-                          border: '2px solid rgba(153, 69, 255, 0.3)',
-                          borderTopColor: '#9945FF',
-                          borderRadius: '50%',
-                          animation: 'spin 0.8s linear infinite'
-                        }} />
-                      ) : (
-                        <ArrowRight style={{ width: '20px', height: '20px', color: '#64748B' }} />
+                      {/* Right Arrow */}
+                      {installed && (
+                        isConnecting ? (
+                          <div style={{
+                            width: '20px',
+                            height: '20px',
+                            border: '2px solid rgba(153, 69, 255, 0.3)',
+                            borderTopColor: '#9945FF',
+                            borderRadius: '50%',
+                            animation: 'spin 0.8s linear infinite',
+                            flexShrink: 0
+                          }} />
+                        ) : (
+                          <ChevronRight 
+                            className="arrow-icon"
+                            style={{ 
+                              width: '20px', 
+                              height: '20px', 
+                              color: '#9CA3AF',
+                              transition: 'all 180ms ease',
+                              flexShrink: 0
+                            }} 
+                          />
+                        )
                       )}
                     </motion.button>
                   );
@@ -331,25 +303,19 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
 
               {/* Footer */}
               <div style={{
-                marginTop: '20px',
-                paddingTop: '20px',
-                borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-                fontSize: '13px',
-                color: '#64748B',
-                lineHeight: 1.5
+                paddingTop: '24px',
+                borderTop: '1px solid #2D2E3A',
+                fontSize: '14px',
+                color: '#9CA3AF',
+                lineHeight: 1.5,
+                textAlign: 'center'
               }}>
-                New to Solana?{' '}
+                New to Solana wallets?{' '}
                 <a
                   href="https://solana.com/learn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    color: '#9945FF',
-                    textDecoration: 'none',
-                    fontWeight: 500
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
-                  onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+                  className="text-purple-400 hover:text-purple-300 font-medium hover:underline"
                 >
                   Learn more
                 </a>
