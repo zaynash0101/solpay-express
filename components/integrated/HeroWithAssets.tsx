@@ -610,7 +610,7 @@ export function HeroWithAssets() {
               {
                 iconImage: '/icons/security.png',
                 title: 'Secure & Transparent',
-                description: 'Secure and transparent on Solana blockchain.',
+                description: 'Built on Solana blockchain.',
                 glowColor: 'rgba(0, 212, 255, 0.6)',
                 glowColorHover: 'rgba(0, 212, 255, 0.9)'
               },
