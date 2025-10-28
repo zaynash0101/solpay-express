@@ -73,10 +73,6 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
     }
   };
 
-  const isWalletInstalled = (walletName: string) => {
-    return wallets.some(w => w.adapter.name === walletName && w.readyState === 'Installed');
-  };
-
   if (!isOpen) return null;
 
   return (
@@ -186,14 +182,15 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
 
               {/* Wallet Cards */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '28px' }}>
-                {SUPPORTED_WALLETS.map((wallet) => {
-                  const installed = isWalletInstalled(wallet.adapter);
-                  const isConnecting = connecting && selectedWallet === wallet.adapter;
+                {wallets.map((wallet) => {
+                  const installed = wallet.readyState === 'Installed';
+                  const isConnecting = connecting && selectedWallet === wallet.adapter.name;
+                  const WalletIcon = wallet.adapter.icon;
 
                   return (
                     <motion.button
-                      key={wallet.name}
-                      onClick={() => installed && !isConnecting && handleWalletSelect(wallet.adapter)}
+                      key={wallet.adapter.name}
+                      onClick={() => installed && !isConnecting && handleWalletSelect(wallet.adapter.name)}
                       disabled={!installed || isConnecting}
                       whileHover={installed ? { scale: 1.015 } : {}}
                       transition={{ duration: 0.18, ease: 'easeOut' }}
@@ -234,34 +231,24 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
                         }
                       }}
                     >
-                      {/* Real Wallet Logo */}
+                      {/* Real Wallet Logo from Adapter */}
                       <div style={{
                         width: '48px',
                         height: '48px',
                         borderRadius: '12px',
                         flexShrink: 0,
                         overflow: 'hidden',
-                        backgroundColor: '#2D2E3A',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center'
                       }}>
                         <img
-                          src={wallet.iconUrl}
-                          alt={`${wallet.name} Wallet`}
+                          src={WalletIcon}
+                          alt={`${wallet.adapter.name} Wallet`}
                           style={{
-                            width: '100%',
-                            height: '100%',
+                            width: '48px',
+                            height: '48px',
                             objectFit: 'contain'
-                          }}
-                          onError={(e) => {
-                            // Fallback to letter if image fails to load
-                            const target = e.currentTarget;
-                            target.style.display = 'none';
-                            const parent = target.parentElement;
-                            if (parent) {
-                              parent.innerHTML = `<span style="color: #9945FF; font-size: 20px; font-weight: 600;">${wallet.name[0]}</span>`;
-                            }
                           }}
                         />
                       </div>
@@ -280,16 +267,16 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
                           color: '#FFFFFF',
                           lineHeight: 1
                         }}>
-                          {wallet.name}
+                          {wallet.adapter.name}
                         </span>
 
                         {/* Badge */}
                         <span style={{
                           fontSize: '14px',
-                          color: '#9CA3AF',
+                          color: installed ? '#10B981' : '#9CA3AF',
                           lineHeight: 1
                         }}>
-                          {installed ? wallet.badge : 'Not Installed'}
+                          {installed ? 'Detected' : 'Not Installed'}
                         </span>
                       </div>
 
