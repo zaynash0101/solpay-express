@@ -609,7 +609,7 @@ export function HeroWithAssets() {
               },
               {
                 iconImage: '/icons/security.png',
-                title: 'Battle-Tested Security',
+                title: 'Secure & Transparent',
                 description: 'Secure and transparent on Solana blockchain.',
                 glowColor: 'rgba(0, 212, 255, 0.6)',
                 glowColorHover: 'rgba(0, 212, 255, 0.9)'
@@ -635,7 +635,8 @@ export function HeroWithAssets() {
                   borderRadius: '1rem',
                   padding: '2rem',
                   transition: 'all 0.3s',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  textAlign: 'center'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
@@ -648,7 +649,7 @@ export function HeroWithAssets() {
                   e.currentTarget.style.transform = 'scale(1)';
                 }}
               >
-                <div style={{ marginBottom: '2rem' }}>
+                <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
                   <img
                     src={feature.iconImage}
                     alt={feature.title}
@@ -682,11 +683,11 @@ export function HeroWithAssets() {
                 </div>
                 <h3 
                   className="bg-gradient-to-r from-purple-300 to-purple-600 bg-clip-text text-transparent"
-                  style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}
+                  style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', textAlign: 'center' }}
                 >
                   {feature.title}
                 </h3>
-                <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.6 }}>
+                <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.6, textAlign: 'center' }}>
                   {feature.description}
                 </p>
               </motion.div>
