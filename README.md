@@ -82,18 +82,42 @@ Pakistani freelancers lose **5-10% on international payments**:
 - **QR Codes**: qrcode.react
 - **Utilities**: Custom hooks for balance, transactions, and sending
 
-## 📦 Installation
+## 🚀 Quick Start for Judges
+
+### Try the Live Demo
+
+**Demo mode is enabled by default** with sample invoices and clients for easy testing.
+
+To test real Solana transactions:
+
+1. **Connect Wallet**: Click "Connect Wallet" and select Phantom or Solflare
+2. **Switch to Devnet**: Change your wallet network to Devnet
+3. **Get Test SOL**: Visit [faucet.solana.com](https://faucet.solana.com) to get free devnet SOL
+4. **Create Invoice**: Go to Dashboard → Create Invoice
+5. **Test Payment**: Share the payment link and complete a test transaction
+
+### Key Features to Test
+
+✅ **Invoice Creation** - Create professional invoices with line items
+✅ **Payment Links** - Generate shareable payment URLs  
+✅ **Instant Payments** - Complete transactions in < 2 seconds
+✅ **Client Management** - Store and manage client information
+✅ **Demo Mode** - Pre-loaded sample data for quick testing
+
+---
+
+## 📦 Local Development
 
 ### Prerequisites
 - Node.js 18+ installed
 - A Solana wallet (Phantom, Solflare, or Backpack)
 - Git
 
-### Steps
+### Installation Steps
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/solpay-express.git
+git clone https://github.com/zaynash0101/solpay-express.git
 cd solpay-express
 ```
 
@@ -110,7 +134,7 @@ cp .env.example .env.local
 Edit `.env.local`:
 ```env
 NEXT_PUBLIC_SOLANA_NETWORK=devnet
-NEXT_PUBLIC_HELIUS_RPC_URL=https://devnet.helius-rpc.com/?api-key=YOUR_KEY
+NEXT_PUBLIC_HELIUS_RPC_URL=https://api.devnet.solana.com
 ```
 
 4. **Run the development server**

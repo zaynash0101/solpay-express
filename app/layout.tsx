@@ -4,6 +4,7 @@ import "./globals.css";
 import "./emergency-styles.css";
 import "./wallet-override.css";
 import { WalletProvider } from "@/components/wallet/WalletProvider";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,34 +22,36 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
-        <WalletProvider>
-          {children}
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 4000,
-              style: {
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                color: '#fff',
-                borderRadius: '12px',
-              },
-              success: {
-                iconTheme: {
-                  primary: '#14F195',
-                  secondary: '#0F0F23',
+        <ErrorBoundary>
+          <WalletProvider>
+            {children}
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  color: '#fff',
+                  borderRadius: '12px',
                 },
-              },
-              error: {
-                iconTheme: {
-                  primary: '#EF4444',
-                  secondary: '#0F0F23',
+                success: {
+                  iconTheme: {
+                    primary: '#14F195',
+                    secondary: '#0F0F23',
+                  },
                 },
-              },
-            }}
-          />
-        </WalletProvider>
+                error: {
+                  iconTheme: {
+                    primary: '#EF4444',
+                    secondary: '#0F0F23',
+                  },
+                },
+              }}
+            />
+          </WalletProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
