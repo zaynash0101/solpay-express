@@ -442,26 +442,30 @@ export function HeroWithAssets() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
+                background: '#9945FF',
                 padding: '1rem 2rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: '1px solid #27282D',
-                background: '#151619',
+                border: 'none',
                 color: 'white',
                 cursor: 'pointer',
+                boxShadow: '0 10px 40px rgba(153, 69, 255, 0.2)',
                 transition: 'all 0.3s',
+                transform: 'scale(1)',
                 fontFamily: 'inherit',
                 textDecoration: 'none',
                 display: 'inline-block'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#1C1D21';
-                e.currentTarget.style.borderColor = '#9945FF';
+                e.currentTarget.style.background = '#8839EE';
+                e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.4)';
+                e.currentTarget.style.transform = 'scale(1.05)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#151619';
-                e.currentTarget.style.borderColor = '#27282D';
+                e.currentTarget.style.background = '#9945FF';
+                e.currentTarget.style.boxShadow = '0 10px 40px rgba(153, 69, 255, 0.2)';
+                e.currentTarget.style.transform = 'scale(1)';
               }}
             >
               View on GitHub
