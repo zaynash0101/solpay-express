@@ -36,7 +36,15 @@ export function HeroWithAssets() {
     <div 
       style={{
         minHeight: '100vh',
-        background: '#0F0F23',
+        background: 'linear-gradient(135deg, #0F0F23 0%, #1a1a3e 100%)',
+        backgroundImage: `
+          linear-gradient(135deg, #0F0F23 0%, #1a1a3e 100%),
+          url(/patterns/grid-bg.jpg)
+        `,
+        backgroundBlendMode: 'overlay',
+        backgroundSize: 'cover, 512px 512px',
+        backgroundPosition: 'center, center',
+        backgroundAttachment: 'fixed, fixed',
         color: 'white',
         position: 'relative',
         overflow: 'hidden',
