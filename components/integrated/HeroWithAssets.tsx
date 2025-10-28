@@ -116,8 +116,9 @@ export function HeroWithAssets() {
               <button
                 onClick={() => setVisible(true)}
                 style={{
-                  background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
-                  border: 'none',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '12px',
                   padding: '12px 24px',
                   color: 'white',
@@ -724,12 +725,13 @@ export function HeroWithAssets() {
             <button
               onClick={handleLaunchApp}
               style={{
-                background: '#9945FF',
+                background: 'rgba(255, 255, 255, 0.05)',
+                backdropFilter: 'blur(10px)',
                 padding: '1.5rem 3rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: 'none',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
                 color: 'white',
                 cursor: 'pointer',
                 display: 'inline-flex',
@@ -740,11 +742,11 @@ export function HeroWithAssets() {
                 fontFamily: 'inherit'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#8839EE';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
                 e.currentTarget.style.boxShadow = '0 25px 70px rgba(153, 69, 255, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#9945FF';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
                 e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.2)';
               }}
             >
