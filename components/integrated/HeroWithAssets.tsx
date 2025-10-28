@@ -158,25 +158,30 @@ export function HeroWithAssets() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <button
                   onClick={() => router.push('/dashboard')}
+                  className="glass-button"
                   style={{
-                    background: 'rgba(20, 241, 149, 0.1)',
-                    border: '1px solid rgba(20, 241, 149, 0.3)',
+                    background: 'rgba(255, 255, 255, 0.05) !important',
+                    backdropFilter: 'blur(10px) !important',
+                    border: '1px solid rgba(255, 255, 255, 0.1) !important',
                     borderRadius: '12px',
                     padding: '12px 20px',
-                    color: '#14F195',
+                    color: 'white',
                     fontWeight: '600',
                     fontSize: '0.9rem',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    fontFamily: 'inherit'
+                    fontFamily: 'inherit',
+                    boxShadow: '0 4px 12px rgba(153, 69, 255, 0.2)'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(20, 241, 149, 0.15)';
-                    e.currentTarget.style.borderColor = 'rgba(20, 241, 149, 0.5)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(153, 69, 255, 0.4)';
+                    e.currentTarget.style.transform = 'scale(1.05)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(20, 241, 149, 0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(20, 241, 149, 0.3)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(153, 69, 255, 0.2)';
+                    e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
                   Dashboard
@@ -184,9 +189,11 @@ export function HeroWithAssets() {
                 
                 <button
                   onClick={() => disconnect()}
+                  className="glass-button"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    background: 'rgba(255, 255, 255, 0.05) !important',
+                    backdropFilter: 'blur(10px) !important',
+                    border: '1px solid rgba(255, 255, 255, 0.1) !important',
                     borderRadius: '12px',
                     padding: '12px 20px',
                     color: 'white',
@@ -197,15 +204,18 @@ export function HeroWithAssets() {
                     alignItems: 'center',
                     gap: '8px',
                     transition: 'all 0.3s ease',
-                    fontFamily: 'inherit'
+                    fontFamily: 'inherit',
+                    boxShadow: '0 4px 12px rgba(153, 69, 255, 0.2)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(153, 69, 255, 0.4)';
+                    e.currentTarget.style.transform = 'scale(1.05)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(153, 69, 255, 0.2)';
+                    e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
                   <div
