@@ -726,13 +726,13 @@ export function HeroWithAssets() {
               onClick={handleLaunchApp}
               className="glass-button"
               style={{
-                background: 'rgba(255, 255, 255, 0.05) !important',
+                background: 'rgba(255, 255, 255, 0.02) !important',
                 backdropFilter: 'blur(10px) !important',
                 padding: '1.5rem 3rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: '1px solid rgba(255, 255, 255, 0.1) !important',
+                border: '1px solid rgba(255, 255, 255, 0.15) !important',
                 color: 'white',
                 cursor: 'pointer',
                 display: 'inline-flex',
@@ -743,11 +743,11 @@ export function HeroWithAssets() {
                 fontFamily: 'inherit'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
                 e.currentTarget.style.boxShadow = '0 25px 70px rgba(153, 69, 255, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
                 e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.2)';
               }}
             >
