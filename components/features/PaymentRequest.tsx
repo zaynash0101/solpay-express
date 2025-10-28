@@ -115,7 +115,9 @@ export function PaymentRequest() {
               value={clientWallet}
               onChange={(e) => {
                 setClientWallet(e.target.value)
-                setErrors({ ...errors, clientWallet: undefined })
+                const newErrors = { ...errors }
+                delete newErrors.clientWallet
+                setErrors(newErrors)
               }}
               placeholder="Enter Solana address"
               className={`bg-white/5 border-white/10 text-white placeholder:text-gray-500 ${
@@ -137,7 +139,9 @@ export function PaymentRequest() {
                 value={amount}
                 onChange={(e) => {
                   setAmount(e.target.value)
-                  setErrors({ ...errors, amount: undefined })
+                  const newErrors = { ...errors }
+                  delete newErrors.amount
+                  setErrors(newErrors)
                 }}
                 placeholder="0.00"
                 className={`bg-white/5 border-white/10 text-white placeholder:text-gray-500 ${
@@ -184,7 +188,9 @@ export function PaymentRequest() {
               value={description}
               onChange={(e) => {
                 setDescription(e.target.value)
-                setErrors({ ...errors, description: undefined })
+                const newErrors = { ...errors }
+                delete newErrors.description
+                setErrors(newErrors)
               }}
               placeholder="Payment for services rendered..."
               rows={3}

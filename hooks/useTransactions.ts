@@ -69,7 +69,7 @@ export function useTransactions(limit: number = 20) {
       });
 
       const parsedTransactions = (await Promise.all(txPromises))
-        .filter((tx): tx is Transaction => tx !== null);
+        .filter((tx) => tx !== null) as Transaction[];
 
       setTransactions(parsedTransactions);
     } catch (err) {
