@@ -425,7 +425,7 @@ export function HeroWithAssets() {
             <button
               onClick={handleLaunchApp}
               style={{
-                background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
+                background: '#9945FF',
                 padding: '1.25rem 2.5rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
@@ -433,20 +433,16 @@ export function HeroWithAssets() {
                 border: 'none',
                 color: 'white',
                 cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                boxShadow: '0 10px 40px rgba(153, 69, 255, 0.5)',
-                transition: 'all 0.3s',
-                fontFamily: 'inherit'
+                boxShadow: '0 10px 40px rgba(153, 69, 255, 0.2)',
+                transition: 'all 0.3s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.05)';
-                e.currentTarget.style.boxShadow = '0 15px 50px rgba(153, 69, 255, 0.7)';
+                e.currentTarget.style.background = '#8839EE';
+                e.currentTarget.style.boxShadow = '0 15px 50px rgba(153, 69, 255, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = '0 10px 40px rgba(153, 69, 255, 0.5)';
+                e.currentTarget.style.background = '#9945FF';
+                e.currentTarget.style.boxShadow = '0 10px 40px rgba(153, 69, 255, 0.2)';
               }}
             >
               <Sparkles style={{ width: '20px', height: '20px' }} />
@@ -591,15 +587,7 @@ export function HeroWithAssets() {
             }}
           >
             Why Choose{' '}
-            <span 
-              style={{
-                background: 'linear-gradient(90deg, #9945FF 0%, #14F195 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                display: 'inline-block'
-              }}
-            >
+            <span style={{ color: '#9945FF' }}>
               SolPay Express
             </span>
           </h2>
@@ -727,18 +715,9 @@ export function HeroWithAssets() {
               }}
             >
               Ready to Get Paid{' '}
-              <span 
-                style={{
-                  background: 'linear-gradient(90deg, #9945FF 0%, #14F195 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  display: 'inline-block'
-                }}
-              >
+              <span style={{ color: '#9945FF' }}>
                 Instantly
-              </span>
-              ?
+              </span>?
             </h2>
             <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.8)', marginBottom: '2rem' }}>
               Join thousands of freelancers saving 5-10% on every payment
@@ -746,7 +725,7 @@ export function HeroWithAssets() {
             <button
               onClick={handleLaunchApp}
               style={{
-                background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
+                background: '#9945FF',
                 padding: '1.5rem 3rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
@@ -757,17 +736,17 @@ export function HeroWithAssets() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                boxShadow: '0 20px 60px rgba(153, 69, 255, 0.6)',
+                boxShadow: '0 20px 60px rgba(153, 69, 255, 0.2)',
                 transition: 'all 0.3s',
                 fontFamily: 'inherit'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.1)';
-                e.currentTarget.style.boxShadow = '0 25px 70px rgba(153, 69, 255, 0.8)';
+                e.currentTarget.style.background = '#8839EE';
+                e.currentTarget.style.boxShadow = '0 25px 70px rgba(153, 69, 255, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.6)';
+                e.currentTarget.style.background = '#9945FF';
+                e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.2)';
               }}
             >
               <Sparkles style={{ width: '24px', height: '24px' }} />

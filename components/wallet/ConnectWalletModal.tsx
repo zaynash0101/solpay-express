@@ -82,7 +82,17 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px'
+          }}
+        >
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -91,24 +101,19 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
             transition={{ duration: 0.25 }}
             onClick={onClose}
             style={{
-              position: 'fixed',
+              position: 'absolute',
               inset: 0,
               backgroundColor: 'rgba(0, 0, 0, 0.85)',
-              backdropFilter: 'blur(8px)',
-              zIndex: 50
+              backdropFilter: 'blur(8px)'
             }}
           />
 
-          {/* Modal Container */}
+          {/* Modal Content - Centered */}
           <div style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 51,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '16px',
-            pointerEvents: 'none'
+            position: 'relative',
+            zIndex: 1,
+            width: '100%',
+            maxWidth: '420px'
           }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
@@ -118,13 +123,11 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '420px',
                 backgroundColor: '#1A1B23',
                 borderRadius: '28px',
                 border: '1px solid #2D2E3A',
                 padding: '40px 32px',
-                boxShadow: '0 25px 80px rgba(0, 0, 0, 0.5), 0 10px 40px rgba(0, 0, 0, 0.3)',
-                pointerEvents: 'auto'
+                boxShadow: '0 25px 80px rgba(0, 0, 0, 0.5), 0 10px 40px rgba(0, 0, 0, 0.3)'
               }}
             >
               {/* Close Button */}
@@ -329,7 +332,7 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
               `}</style>
             </motion.div>
           </div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   );

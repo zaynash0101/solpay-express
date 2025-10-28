@@ -197,19 +197,40 @@
   background: var(--color-accent) !important;
 }
 
-/* Hide any sidebar-style modals */
-.wallet-adapter-modal-wrapper[style*="right: 0"],
-.wallet-adapter-modal-wrapper[style*="left: 0"][style*="width"] {
+/* FORCE CENTER - Override ALL inline styles */
+.wallet-adapter-modal-wrapper,
+.wallet-adapter-modal-wrapper[style],
+.wallet-adapter-modal-wrapper[style*="right"],
+.wallet-adapter-modal-wrapper[style*="left"],
+.wallet-adapter-modal-wrapper[style*="width"],
+.wallet-adapter-modal-wrapper[style*="height"] {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  padding: 1rem !important;
 }
 
-.wallet-adapter-modal-container {
+.wallet-adapter-modal-container,
+.wallet-adapter-modal-container[style] {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-height: 100vh !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
 }
 
 /* Coin Animation - Combined Rotation + Float */
