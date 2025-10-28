@@ -22,21 +22,21 @@ const SUPPORTED_WALLETS: WalletOption[] = [
   {
     name: 'Phantom',
     adapter: 'Phantom',
-    iconUrl: 'https://raw.githubusercontent.com/solana-labs/wallet-adapter/master/packages/wallets/icons/phantom.svg',
+    iconUrl: 'https://phantom.app/img/phantom-icon-purple.png',
     badge: 'Most Popular',
     downloadUrl: 'https://phantom.app/'
   },
   {
     name: 'Solflare',
     adapter: 'Solflare',
-    iconUrl: 'https://raw.githubusercontent.com/solana-labs/wallet-adapter/master/packages/wallets/icons/solflare.svg',
+    iconUrl: 'https://solflare.com/assets/logo.svg',
     badge: 'Secure',
     downloadUrl: 'https://solflare.com/'
   },
   {
     name: 'Backpack',
     adapter: 'Backpack',
-    iconUrl: 'https://raw.githubusercontent.com/solana-labs/wallet-adapter/master/packages/wallets/icons/backpack.svg',
+    iconUrl: 'https://backpack.app/_next/image?url=%2Flogo.png&w=256&q=75',
     badge: 'Multi-chain',
     downloadUrl: 'https://backpack.app/'
   }
@@ -337,7 +337,20 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
                   href="https://solana.com/learn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-purple-400 hover:text-purple-300 font-medium hover:underline"
+                  style={{
+                    color: '#9945FF',
+                    fontWeight: '500',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = '#8839EE';
+                    e.currentTarget.style.textDecoration = 'underline';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = '#9945FF';
+                    e.currentTarget.style.textDecoration = 'none';
+                  }}
                 >
                   Learn more
                 </a>
