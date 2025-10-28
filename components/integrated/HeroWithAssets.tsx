@@ -374,7 +374,7 @@ export function HeroWithAssets() {
               lineHeight: 1.2
             }}
           >
-            Instant Payments at<br />Lightning Speed
+            Instant Payments<br />at Lightning Speed
           </motion.h1>
 
           {/* Subheadline */}
