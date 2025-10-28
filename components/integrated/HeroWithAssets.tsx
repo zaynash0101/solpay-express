@@ -374,7 +374,7 @@ export function HeroWithAssets() {
               lineHeight: 1.2
             }}
           >
-            Send Money at the<br />Speed of Solana
+            Instant Payments at<br />Lightning Speed
           </motion.h1>
 
           {/* Subheadline */}
