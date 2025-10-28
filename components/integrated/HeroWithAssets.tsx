@@ -366,26 +366,15 @@ export function HeroWithAssets() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="bg-gradient-to-r from-purple-300 via-purple-400 to-purple-600 bg-clip-text text-transparent"
             style={{
               fontSize: 'clamp(2.5rem, 8vw, 5rem)',
               fontWeight: 'bold',
               marginBottom: '1.5rem',
-              lineHeight: 1.2,
-              color: 'white'
+              lineHeight: 1.2
             }}
           >
-            Send Money at the{' '}
-            <span 
-              style={{
-                background: 'linear-gradient(90deg, #9945FF 0%, #00D4FF 50%, #14F195 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                display: 'inline-block'
-              }}
-            >
-              Speed of Solana
-            </span>
+            Send Money at the Speed of Solana
           </motion.h1>
 
           {/* Subheadline */}
@@ -578,18 +567,15 @@ export function HeroWithAssets() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
           
           <h2 
+            className="bg-gradient-to-r from-purple-300 via-purple-400 to-purple-600 bg-clip-text text-transparent"
             style={{
               fontSize: 'clamp(2rem, 5vw, 3rem)',
               fontWeight: 'bold',
               textAlign: 'center',
-              marginBottom: '4rem',
-              color: 'white'
+              marginBottom: '4rem'
             }}
           >
-            Why Choose{' '}
-            <span style={{ color: '#9945FF' }}>
-              SolPay Express
-            </span>
+            Why Choose SolPay Express
           </h2>
 
           <div 
@@ -680,7 +666,10 @@ export function HeroWithAssets() {
                     }}
                   />
                 </div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'white' }}>
+                <h3 
+                  className="bg-gradient-to-r from-purple-300 to-purple-600 bg-clip-text text-transparent"
+                  style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}
+                >
                   {feature.title}
                 </h3>
                 <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.6 }}>
@@ -707,17 +696,14 @@ export function HeroWithAssets() {
             }}
           >
             <h2 
+              className="bg-gradient-to-r from-purple-200 via-purple-400 to-purple-600 bg-clip-text text-transparent"
               style={{
                 fontSize: 'clamp(1.875rem, 4vw, 3rem)',
                 fontWeight: 'bold',
-                marginBottom: '1.5rem',
-                color: 'white'
+                marginBottom: '1.5rem'
               }}
             >
-              Ready to Get Paid{' '}
-              <span style={{ color: '#9945FF' }}>
-                Instantly
-              </span>?
+              Ready to Get Paid Instantly?
             </h2>
             <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.8)', marginBottom: '2rem' }}>
               Join thousands of freelancers saving 5-10% on every payment

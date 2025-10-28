@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./emergency-styles.css";
+import "./wallet-override.css";
 import { WalletProvider } from "@/components/wallet/WalletProvider";
 import { Toaster } from "react-hot-toast";
 

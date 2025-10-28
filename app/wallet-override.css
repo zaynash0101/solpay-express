@@ -1,0 +1,42 @@
+/* CRITICAL: Force wallet modal to center - Override Solana Wallet Adapter inline styles */
+
+/* Target the wrapper with maximum specificity */
+.wallet-adapter-modal-wrapper {
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+  z-index: 9999 !important;
+}
+
+/* Override any inline styles on the container */
+.wallet-adapter-modal-container {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  height: auto !important;
+  transform: none !important;
+  margin: 0 auto !important;
+}
+
+/* Ensure modal itself is centered */
+.wallet-adapter-modal {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  margin: 0 auto !important;
+}
