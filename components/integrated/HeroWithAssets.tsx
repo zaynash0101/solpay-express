@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Sparkles, 
-  ArrowRight, 
   Zap, 
   Shield, 
   DollarSign,
@@ -434,9 +432,7 @@ export function HeroWithAssets() {
                 e.currentTarget.style.boxShadow = '0 10px 40px rgba(153, 69, 255, 0.2)';
               }}
             >
-              <Sparkles style={{ width: '20px', height: '20px' }} />
               {connected ? 'Go to Dashboard' : 'Launch App'}
-              <ArrowRight style={{ width: '20px', height: '20px' }} />
             </button>
             
             <button
@@ -735,9 +731,7 @@ export function HeroWithAssets() {
                 e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.2)';
               }}
             >
-              <Sparkles style={{ width: '24px', height: '24px' }} />
               Start Now - It&apos;s Free
-              <ArrowRight style={{ width: '24px', height: '24px' }} />
             </button>
           </div>
         </div>
