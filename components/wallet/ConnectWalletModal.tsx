@@ -22,21 +22,21 @@ const SUPPORTED_WALLETS: WalletOption[] = [
   {
     name: 'Phantom',
     adapter: 'Phantom',
-    iconUrl: 'https://avatars.githubusercontent.com/u/78782331?s=200&v=4',
+    iconUrl: 'https://raw.githubusercontent.com/solana-labs/wallet-adapter/master/packages/wallets/icons/phantom.svg',
     badge: 'Most Popular',
     downloadUrl: 'https://phantom.app/'
   },
   {
     name: 'Solflare',
     adapter: 'Solflare',
-    iconUrl: 'https://avatars.githubusercontent.com/u/82908762?s=200&v=4',
+    iconUrl: 'https://raw.githubusercontent.com/solana-labs/wallet-adapter/master/packages/wallets/icons/solflare.svg',
     badge: 'Secure',
     downloadUrl: 'https://solflare.com/'
   },
   {
     name: 'Backpack',
     adapter: 'Backpack',
-    iconUrl: 'https://pbs.twimg.com/profile_images/1593304942430547970/k0hlNo_V_400x400.jpg',
+    iconUrl: 'https://raw.githubusercontent.com/solana-labs/wallet-adapter/master/packages/wallets/icons/backpack.svg',
     badge: 'Multi-chain',
     downloadUrl: 'https://backpack.app/'
   }
@@ -235,17 +235,36 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
                       }}
                     >
                       {/* Real Wallet Logo */}
-                      <img
-                        src={wallet.iconUrl}
-                        alt={`${wallet.name} Wallet`}
-                        style={{
-                          width: '48px',
-                          height: '48px',
-                          borderRadius: '12px',
-                          flexShrink: 0,
-                          objectFit: 'cover'
-                        }}
-                      />
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '12px',
+                        flexShrink: 0,
+                        overflow: 'hidden',
+                        backgroundColor: '#2D2E3A',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}>
+                        <img
+                          src={wallet.iconUrl}
+                          alt={`${wallet.name} Wallet`}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain'
+                          }}
+                          onError={(e) => {
+                            // Fallback to letter if image fails to load
+                            const target = e.currentTarget;
+                            target.style.display = 'none';
+                            const parent = target.parentElement;
+                            if (parent) {
+                              parent.innerHTML = `<span style="color: #9945FF; font-size: 20px; font-weight: 600;">${wallet.name[0]}</span>`;
+                            }
+                          }}
+                        />
+                      </div>
 
                       {/* Wallet Info */}
                       <div style={{
