@@ -10,8 +10,14 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SolPay Express - Lightning Fast Solana Payments",
-  description: "Instant USDC and SOL payments for Pakistani freelancers and businesses.",
+  title: "SolPay Express - Instant Invoice Payments on Solana",
+  description: "Professional invoicing platform for Pakistani freelancers. Create invoices and receive instant USDC payments with 99% lower fees than PayPal or Wise.",
+  keywords: ["solana", "invoice", "payments", "freelancer", "pakistan", "usdc", "crypto", "web3", "blockchain"],
+  openGraph: {
+    title: "SolPay Express - Get Paid Instantly on Solana",
+    description: "Stop losing money on payment fees. Invoice and get paid in USDC instantly.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

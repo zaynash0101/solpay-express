@@ -461,15 +461,18 @@ export function HeroWithAssets() {
                 color: 'white',
                 cursor: 'pointer',
                 boxShadow: '0 10px 40px rgba(153, 69, 255, 0.2)',
-                transition: 'all 0.3s'
+                transition: 'all 0.3s',
+                transform: 'scale(1)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#8839EE';
-                e.currentTarget.style.boxShadow = '0 15px 50px rgba(153, 69, 255, 0.3)';
+                e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.4)';
+                e.currentTarget.style.transform = 'scale(1.05)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#9945FF';
                 e.currentTarget.style.boxShadow = '0 10px 40px rgba(153, 69, 255, 0.2)';
+                e.currentTarget.style.transform = 'scale(1)';
               }}
             >
               Try Live Demo →
