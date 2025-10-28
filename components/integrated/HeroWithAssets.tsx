@@ -260,6 +260,13 @@ export function HeroWithAssets() {
               transform: `translateY(${scrollY * 0.3}px)`
             }}
           />
+          <div 
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(to bottom, transparent 0%, rgba(15,15,35,0.6) 50%, #0F0F23 100%)'
+            }}
+          />
         </div>
 
         {/* Animated Background Blobs */}
@@ -352,6 +359,29 @@ export function HeroWithAssets() {
             </motion.div>
           </motion.div>
 
+          {/* Superteam Pakistan Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '1.5rem'
+            }}
+          >
+            <span style={{
+              padding: '0.5rem 1rem',
+              background: 'rgba(153, 69, 255, 0.1)',
+              border: '1px solid rgba(153, 69, 255, 0.3)',
+              borderRadius: '9999px',
+              color: '#C084FC',
+              fontSize: '0.875rem',
+              fontWeight: '500'
+            }}>
+              🇵🇰 Built for Pakistani Freelancers
+            </span>
+          </motion.div>
 
           {/* Main Headline */}
           <motion.h1
@@ -375,15 +405,33 @@ export function HeroWithAssets() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{
-              fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
-              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
+              color: 'rgba(255, 255, 255, 0.9)',
+              marginBottom: '1rem',
+              maxWidth: '800px',
+              margin: '0 auto 1rem',
+              lineHeight: 1.6,
+              fontWeight: '600'
+            }}
+          >
+            Stop losing 5-10% on every payment.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            style={{
+              fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+              color: 'rgba(255, 255, 255, 0.7)',
               marginBottom: '3rem',
-              maxWidth: '700px',
+              maxWidth: '800px',
               margin: '0 auto 3rem',
               lineHeight: 1.6
             }}
           >
-            Professional invoicing with instant Solana payments.
+            Create professional invoices and receive instant USDC payments on Solana.
+            <br />
+            No PayPal fees. No Wise delays. No bank charges.
           </motion.p>
 
           {/* CTA Buttons */}
