@@ -1,9 +1,11 @@
 /* ========================================
-   WALLET MODAL CENTER & SCROLL FIX
+   WALLET MODAL SCROLL FIX - NUCLEAR OVERRIDE
    ======================================== */
 
-/* Force wallet modal to center and allow scrolling */
-.wallet-adapter-modal-wrapper {
+/* Target ALL possible selectors with inline styles */
+.wallet-adapter-modal-wrapper,
+.wallet-adapter-modal-wrapper[style],
+div[class*="wallet-adapter-modal-wrapper"] {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -19,14 +21,15 @@
   background: rgba(0, 0, 0, 0.85) !important;
   backdrop-filter: blur(12px) !important;
   overflow-y: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
-.wallet-adapter-modal-container {
+.wallet-adapter-modal-container,
+.wallet-adapter-modal-container[style],
+div[class*="wallet-adapter-modal-container"] {
   position: relative !important;
-  left: 0 !important;
-  right: 0 !important;
-  top: 0 !important;
-  bottom: 0 !important;
   width: 100% !important;
   max-width: 420px !important;
   height: auto !important;
@@ -36,17 +39,26 @@
   overflow: visible !important;
 }
 
-.wallet-adapter-modal {
+.wallet-adapter-modal,
+.wallet-adapter-modal[style],
+div[class*="wallet-adapter-modal"]:not([class*="wrapper"]):not([class*="container"]) {
   position: relative !important;
-  left: 0 !important;
-  right: 0 !important;
-  top: 0 !important;
-  bottom: 0 !important;
   margin: 0 auto !important;
   width: 100% !important;
   max-width: 420px !important;
-  max-height: 85vh !important;
-  overflow: visible !important;
+  max-height: 80vh !important;
+  overflow: hidden !important;
   display: flex !important;
   flex-direction: column !important;
+}
+
+/* Force the list to scroll */
+.wallet-adapter-modal-list,
+.wallet-adapter-modal-list[style],
+ul[class*="wallet-adapter-modal-list"] {
+  max-height: 50vh !important;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
 }

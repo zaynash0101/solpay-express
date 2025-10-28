@@ -181,14 +181,20 @@
   min-height: 0 !important;
 }
 
-.wallet-adapter-modal-list {
+.wallet-adapter-modal-list,
+.wallet-adapter-modal-list[style],
+ul[class*="wallet-adapter-modal-list"] {
   display: flex !important;
   flex-direction: column !important;
   gap: 0.75rem !important;
-  max-height: 400px !important;
-  overflow-y: auto !important;
+  max-height: 50vh !important;
+  min-height: 200px !important;
+  overflow-y: scroll !important;
   overflow-x: hidden !important;
   padding-right: 0.5rem !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  scroll-behavior: smooth !important;
 }
 
 /* Scrollbar styling for wallet list */
