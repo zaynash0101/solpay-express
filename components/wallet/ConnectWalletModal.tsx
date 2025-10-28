@@ -112,6 +112,7 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
             maxWidth: '420px'
           }}>
             <motion.div
+              className="wallet-modal"
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.92 }}
@@ -343,10 +344,20 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
                 </a>
               </div>
 
-              {/* Add spinner keyframes */}
+              {/* Add spinner keyframes and force remove gradients */}
               <style>{`
                 @keyframes spin {
                   to { transform: rotate(360deg); }
+                }
+                
+                /* FORCE REMOVE ALL GRADIENTS FROM MODAL */
+                .wallet-modal a,
+                .wallet-modal button {
+                  background: none !important;
+                  background-image: none !important;
+                  background-clip: unset !important;
+                  -webkit-background-clip: unset !important;
+                  -webkit-text-fill-color: unset !important;
                 }
               `}</style>
             </motion.div>
