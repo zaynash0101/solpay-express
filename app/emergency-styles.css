@@ -29,8 +29,16 @@ body {
   background-clip: text !important;
 }
 
-/* Buttons */
-button, .button {
+/* Glass Buttons - Override */
+.glass-button {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Regular Buttons */
+button:not(.glass-button), .button {
   background: #9945FF !important;
   color: white !important;
   padding: 0.75rem 1.5rem !important;
@@ -41,7 +49,7 @@ button, .button {
   transition: all 0.3s !important;
 }
 
-button:hover, .button:hover {
+button:not(.glass-button):hover, .button:hover {
   transform: scale(1.05) !important;
   box-shadow: 0 8px 30px rgba(153, 69, 255, 0.4) !important;
 }

@@ -99,10 +99,7 @@ export function HeroWithAssets() {
               style={{ 
                 fontSize: '1.5rem', 
                 fontWeight: '800',
-                background: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                color: 'white',
                 letterSpacing: '-0.02em'
               }}
             >
@@ -115,10 +112,11 @@ export function HeroWithAssets() {
             {!connected ? (
               <button
                 onClick={() => setVisible(true)}
+                className="glass-button"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  background: 'rgba(255, 255, 255, 0.05) !important',
+                  backdropFilter: 'blur(10px) !important',
+                  border: '1px solid rgba(255, 255, 255, 0.1) !important',
                   borderRadius: '12px',
                   padding: '12px 24px',
                   color: 'white',
@@ -411,14 +409,15 @@ export function HeroWithAssets() {
           >
             <button
               onClick={handleLaunchApp}
+              className="glass-button"
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
+                background: 'rgba(255, 255, 255, 0.05) !important',
+                backdropFilter: 'blur(10px) !important',
                 padding: '1rem 2rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.1) !important',
                 color: 'white',
                 cursor: 'pointer',
                 boxShadow: '0 10px 40px rgba(153, 69, 255, 0.2)',
@@ -443,14 +442,15 @@ export function HeroWithAssets() {
               href="https://github.com/zaynash0101/solpay-express"
               target="_blank"
               rel="noopener noreferrer"
+              className="glass-button"
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
+                background: 'rgba(255, 255, 255, 0.05) !important',
+                backdropFilter: 'blur(10px) !important',
                 padding: '1rem 2rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.1) !important',
                 color: 'white',
                 cursor: 'pointer',
                 boxShadow: '0 10px 40px rgba(153, 69, 255, 0.2)',
@@ -724,14 +724,15 @@ export function HeroWithAssets() {
             </p>
             <button
               onClick={handleLaunchApp}
+              className="glass-button"
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
+                background: 'rgba(255, 255, 255, 0.05) !important',
+                backdropFilter: 'blur(10px) !important',
                 padding: '1.5rem 3rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.1) !important',
                 color: 'white',
                 cursor: 'pointer',
                 display: 'inline-flex',
