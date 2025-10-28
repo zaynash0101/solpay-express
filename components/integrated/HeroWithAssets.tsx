@@ -379,7 +379,7 @@ export function HeroWithAssets() {
               fontSize: '0.875rem',
               fontWeight: '500'
             }}>
-              🏆 Built for Superteam Pakistan Mini-Hack
+              🇵🇰 Built for Pakistani Freelancers
             </span>
           </motion.div>
 
@@ -396,7 +396,7 @@ export function HeroWithAssets() {
               lineHeight: 1.2
             }}
           >
-            Instant Payments<br />at Lightning Speed
+            Get Paid Instantly.<br />Keep More Money.
           </motion.h1>
 
           {/* Subheadline */}
@@ -405,17 +405,33 @@ export function HeroWithAssets() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{
-              fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
-              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
+              color: 'rgba(255, 255, 255, 0.9)',
+              marginBottom: '1rem',
+              maxWidth: '800px',
+              margin: '0 auto 1rem',
+              lineHeight: 1.6,
+              fontWeight: '600'
+            }}
+          >
+            Stop losing 5-10% on every payment.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            style={{
+              fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+              color: 'rgba(255, 255, 255, 0.7)',
               marginBottom: '3rem',
               maxWidth: '800px',
               margin: '0 auto 3rem',
               lineHeight: 1.6
             }}
           >
-            Instant USDC payments for Pakistani freelancers and businesses.
+            Create professional invoices and receive instant USDC payments on Solana.
             <br />
-            No borders. No delays. Just pure speed.
+            No PayPal fees. No Wise delays. No bank charges.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -591,11 +607,21 @@ export function HeroWithAssets() {
               fontSize: 'clamp(2rem, 5vw, 3rem)',
               fontWeight: 'bold',
               textAlign: 'center',
-              marginBottom: '4rem'
+              marginBottom: '1rem'
             }}
           >
-            Why Choose SolPay Express
+            Complete Business Tool, Not Just Payments
           </h2>
+          <p style={{
+            textAlign: 'center',
+            color: 'rgba(255, 255, 255, 0.6)',
+            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+            maxWidth: '800px',
+            margin: '0 auto 4rem',
+            lineHeight: 1.6
+          }}>
+            Invoice creation • Client management • Payment tracking • PDF export • Payment links
+          </p>
 
           <div 
             style={{
