@@ -159,6 +159,10 @@
   margin: 0 auto !important;
   position: relative !important;
   padding: 2rem !important;
+  max-height: 85vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
 }
 
 .wallet-adapter-modal-title {
@@ -167,6 +171,14 @@
   font-weight: 700 !important;
   margin-bottom: 1.5rem !important;
   text-align: center !important;
+  flex-shrink: 0 !important;
+}
+
+.wallet-adapter-modal-list-wrapper {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  min-height: 0 !important;
 }
 
 .wallet-adapter-modal-list {
