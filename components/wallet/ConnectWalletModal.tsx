@@ -182,7 +182,16 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
               </p>
 
               {/* Wallet Cards */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '28px' }}>
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '14px', 
+                marginBottom: '28px',
+                maxHeight: '400px',
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                paddingRight: '8px'
+              }}>
                 {wallets.map((wallet) => {
                   const installed = wallet.readyState === 'Installed';
                   const isConnecting = connecting && selectedWallet === wallet.adapter.name;
@@ -358,6 +367,25 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
                   background-clip: unset !important;
                   -webkit-background-clip: unset !important;
                   -webkit-text-fill-color: unset !important;
+                }
+                
+                /* Custom scrollbar for wallet list */
+                .wallet-modal > div::-webkit-scrollbar {
+                  width: 8px;
+                }
+                
+                .wallet-modal > div::-webkit-scrollbar-track {
+                  background: rgba(255, 255, 255, 0.05);
+                  border-radius: 4px;
+                }
+                
+                .wallet-modal > div::-webkit-scrollbar-thumb {
+                  background: rgba(153, 69, 255, 0.5);
+                  border-radius: 4px;
+                }
+                
+                .wallet-modal > div::-webkit-scrollbar-thumb:hover {
+                  background: rgba(153, 69, 255, 0.7);
                 }
               `}</style>
             </motion.div>
