@@ -30,8 +30,8 @@ body {
 }
 
 /* Buttons */
-button, .button, a[href] {
-  background: linear-gradient(135deg, #9945FF 0%, #14F195 100%) !important;
+button, .button {
+  background: #9945FF !important;
   color: white !important;
   padding: 0.75rem 1.5rem !important;
   border-radius: 0.5rem !important;
@@ -41,7 +41,7 @@ button, .button, a[href] {
   transition: all 0.3s !important;
 }
 
-button:hover, .button:hover, a[href]:hover {
+button:hover, .button:hover {
   transform: scale(1.05) !important;
   box-shadow: 0 8px 30px rgba(153, 69, 255, 0.4) !important;
 }
