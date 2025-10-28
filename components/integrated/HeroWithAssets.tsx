@@ -359,6 +359,30 @@ export function HeroWithAssets() {
             </motion.div>
           </motion.div>
 
+          {/* Superteam Pakistan Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '1.5rem'
+            }}
+          >
+            <span style={{
+              padding: '0.5rem 1rem',
+              background: 'rgba(153, 69, 255, 0.1)',
+              border: '1px solid rgba(153, 69, 255, 0.3)',
+              borderRadius: '9999px',
+              color: '#C084FC',
+              fontSize: '0.875rem',
+              fontWeight: '500'
+            }}>
+              🏆 Built for Superteam Pakistan Mini-Hack
+            </span>
+          </motion.div>
+
           {/* Main Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -413,7 +437,7 @@ export function HeroWithAssets() {
               onClick={handleLaunchApp}
               style={{
                 background: '#9945FF',
-                padding: '1.25rem 2.5rem',
+                padding: '1rem 2rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
@@ -432,33 +456,38 @@ export function HeroWithAssets() {
                 e.currentTarget.style.boxShadow = '0 10px 40px rgba(153, 69, 255, 0.2)';
               }}
             >
-              {connected ? 'Go to Dashboard' : 'Launch App'}
+              Try Live Demo →
             </button>
             
-            <button
+            <a
+              href="https://github.com/zaynash0101/solpay-express"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                padding: '1.25rem 2.5rem',
+                padding: '1rem 2rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: '2px solid #9945FF',
-                background: 'transparent',
+                border: '1px solid #27282D',
+                background: '#151619',
                 color: 'white',
                 cursor: 'pointer',
                 transition: 'all 0.3s',
-                fontFamily: 'inherit'
+                fontFamily: 'inherit',
+                textDecoration: 'none',
+                display: 'inline-block'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(153, 69, 255, 0.1)';
-                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.background = '#1C1D21';
+                e.currentTarget.style.borderColor = '#9945FF';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.background = '#151619';
+                e.currentTarget.style.borderColor = '#27282D';
               }}
             >
-              Watch Demo
-            </button>
+              View on GitHub
+            </a>
           </motion.div>
 
           {/* Stats Grid - SVG Icons */}
@@ -476,31 +505,24 @@ export function HeroWithAssets() {
           >
             {[
               { 
-                Icon: TrendingUp, 
-                label: 'Transactions', 
-                value: '127K+', 
-                color: '#14F195' 
-              },
-              { 
-                Icon: DollarSign, 
-                label: 'Volume', 
-                value: '$2.4M', 
-                color: '#00D4FF' 
-              },
-              { 
-                Icon: Users, 
-                label: 'Users', 
-                value: '8.3K', 
+                value: '< $0.01', 
+                label: 'Per Transaction', 
+                description: '99% cheaper than PayPal or Wise',
                 color: '#9945FF' 
               },
               { 
-                Icon: Activity, 
-                label: 'Avg Speed', 
-                value: '1.8s', 
+                value: '< 2 sec', 
+                label: 'Payment Speed', 
+                description: '1000x faster than bank transfers',
                 color: '#14F195' 
+              },
+              { 
+                value: '0%', 
+                label: 'International Fees', 
+                description: 'No borders, no conversion fees',
+                color: '#00D4FF' 
               }
             ].map((stat, i) => {
-              const IconComponent = stat.Icon;
               return (
                 <div
                   key={i}
@@ -524,31 +546,32 @@ export function HeroWithAssets() {
                     e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
-                  <IconComponent 
-                    style={{ 
-                      width: '2rem', 
-                      height: '2rem', 
-                      color: stat.color, 
-                      marginBottom: '0.5rem',
-                      display: 'block',
-                      margin: '0 auto 0.5rem'
-                    }} 
-                  />
                   <div 
                     style={{
-                      fontSize: '2rem',
+                      fontSize: '3rem',
                       fontWeight: 'bold',
-                      background: `linear-gradient(135deg, #9945FF 0%, ${stat.color} 100%)`,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      marginBottom: '0.5rem'
+                      color: stat.color,
+                      marginBottom: '0.5rem',
+                      textAlign: 'center'
                     }}
                   >
                     {stat.value}
                   </div>
-                  <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.875rem' }}>
+                  <div style={{ 
+                    color: '#FFFFFF', 
+                    fontSize: '1.25rem',
+                    fontWeight: '600',
+                    marginBottom: '0.5rem',
+                    textAlign: 'center'
+                  }}>
                     {stat.label}
+                  </div>
+                  <div style={{ 
+                    color: 'rgba(255, 255, 255, 0.6)', 
+                    fontSize: '0.875rem',
+                    textAlign: 'center'
+                  }}>
+                    {stat.description}
                   </div>
                 </div>
               );
