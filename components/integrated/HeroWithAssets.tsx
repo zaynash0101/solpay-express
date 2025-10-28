@@ -585,21 +585,21 @@ export function HeroWithAssets() {
               {
                 iconImage: '/icons/speed.png',
                 title: 'Lightning Fast',
-                description: 'Transactions confirm in under 2 seconds. No more waiting days for payments.',
+                description: 'Payments confirm in under 2 seconds.',
                 glowColor: 'rgba(153, 69, 255, 0.6)',
                 glowColorHover: 'rgba(153, 69, 255, 0.9)'
               },
               {
                 iconImage: '/icons/security.png',
                 title: 'Battle-Tested Security',
-                description: 'Built on Solana\'s proven blockchain. Your transactions are secure and transparent.',
+                description: 'Secure and transparent on Solana blockchain.',
                 glowColor: 'rgba(0, 212, 255, 0.6)',
                 glowColorHover: 'rgba(0, 212, 255, 0.9)'
               },
               {
                 iconImage: '/icons/low-fee.png',
                 title: 'Minimal Fees',
-                description: 'Pay less than $0.01 per transaction. Save 5-10% compared to traditional methods.',
+                description: 'Less than $0.01 per transaction.',
                 glowColor: 'rgba(20, 241, 149, 0.6)',
                 glowColorHover: 'rgba(20, 241, 149, 0.9)'
               }
