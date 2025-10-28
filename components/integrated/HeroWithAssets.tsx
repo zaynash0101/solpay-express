@@ -411,12 +411,13 @@ export function HeroWithAssets() {
             <button
               onClick={handleLaunchApp}
               style={{
-                background: '#9945FF',
+                background: 'rgba(255, 255, 255, 0.05)',
+                backdropFilter: 'blur(10px)',
                 padding: '1rem 2rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: 'none',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
                 color: 'white',
                 cursor: 'pointer',
                 boxShadow: '0 10px 40px rgba(153, 69, 255, 0.2)',
@@ -424,12 +425,12 @@ export function HeroWithAssets() {
                 transform: 'scale(1)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#8839EE';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
                 e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.4)';
                 e.currentTarget.style.transform = 'scale(1.05)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#9945FF';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
                 e.currentTarget.style.boxShadow = '0 10px 40px rgba(153, 69, 255, 0.2)';
                 e.currentTarget.style.transform = 'scale(1)';
               }}
@@ -442,12 +443,13 @@ export function HeroWithAssets() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                background: '#9945FF',
+                background: 'rgba(255, 255, 255, 0.05)',
+                backdropFilter: 'blur(10px)',
                 padding: '1rem 2rem',
                 fontSize: '1.125rem',
                 fontWeight: '600',
                 borderRadius: '0.75rem',
-                border: 'none',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
                 color: 'white',
                 cursor: 'pointer',
                 boxShadow: '0 10px 40px rgba(153, 69, 255, 0.2)',
@@ -458,12 +460,12 @@ export function HeroWithAssets() {
                 display: 'inline-block'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#8839EE';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
                 e.currentTarget.style.boxShadow = '0 20px 60px rgba(153, 69, 255, 0.4)';
                 e.currentTarget.style.transform = 'scale(1.05)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#9945FF';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
                 e.currentTarget.style.boxShadow = '0 10px 40px rgba(153, 69, 255, 0.2)';
                 e.currentTarget.style.transform = 'scale(1)';
               }}
