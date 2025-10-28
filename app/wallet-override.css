@@ -1,12 +1,12 @@
 /* ========================================
-   WALLET MODAL SCROLL FIX - NUCLEAR OVERRIDE
+   WALLET MODAL - COMPLETE REWRITE
    ======================================== */
 
-/* Target ALL possible selectors with inline styles */
+/* Backdrop wrapper - full screen overlay */
 .wallet-adapter-modal-wrapper,
-.wallet-adapter-modal-wrapper[style],
-div[class*="wallet-adapter-modal-wrapper"] {
+.wallet-adapter-modal-wrapper[style] {
   position: fixed !important;
+  inset: 0 !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
@@ -14,9 +14,9 @@ div[class*="wallet-adapter-modal-wrapper"] {
   width: 100vw !important;
   height: 100vh !important;
   display: flex !important;
-  align-items: center !important;
+  align-items: flex-start !important;
   justify-content: center !important;
-  padding: 1rem !important;
+  padding: 2rem 1rem !important;
   z-index: 99999 !important;
   background: rgba(0, 0, 0, 0.85) !important;
   backdrop-filter: blur(12px) !important;
@@ -26,39 +26,53 @@ div[class*="wallet-adapter-modal-wrapper"] {
   pointer-events: auto !important;
 }
 
+/* Container - holds the modal */
 .wallet-adapter-modal-container,
-.wallet-adapter-modal-container[style],
-div[class*="wallet-adapter-modal-container"] {
+.wallet-adapter-modal-container[style] {
   position: relative !important;
   width: 100% !important;
-  max-width: 420px !important;
-  height: auto !important;
-  max-height: 90vh !important;
-  transform: none !important;
+  max-width: 400px !important;
   margin: auto !important;
+  transform: none !important;
+}
+
+/* Modal itself - the white box */
+.wallet-adapter-modal,
+.wallet-adapter-modal[style] {
+  position: relative !important;
+  width: 100% !important;
+  max-height: none !important;
+  height: auto !important;
+  display: block !important;
   overflow: visible !important;
 }
 
-.wallet-adapter-modal,
-.wallet-adapter-modal[style],
-div[class*="wallet-adapter-modal"]:not([class*="wrapper"]):not([class*="container"]) {
+/* Modal title */
+.wallet-adapter-modal-title,
+.wallet-adapter-modal-title[style] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   position: relative !important;
-  margin: 0 auto !important;
-  width: 100% !important;
-  max-width: 420px !important;
-  max-height: 80vh !important;
-  overflow: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
+  margin-bottom: 1.5rem !important;
 }
 
-/* Force the list to scroll */
+/* Wallet list - THIS is what needs to scroll */
 .wallet-adapter-modal-list,
 .wallet-adapter-modal-list[style],
-ul[class*="wallet-adapter-modal-list"] {
-  max-height: 50vh !important;
+ul.wallet-adapter-modal-list {
+  display: block !important;
+  max-height: 400px !important;
   overflow-y: scroll !important;
   overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch !important;
   overscroll-behavior: contain !important;
+  position: relative !important;
+}
+
+/* Individual wallet items */
+.wallet-adapter-modal-list-item,
+.wallet-adapter-modal-list-item[style] {
+  display: flex !important;
+  margin-bottom: 0.75rem !important;
 }
