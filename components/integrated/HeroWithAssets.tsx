@@ -12,12 +12,12 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+import { useCustomWalletModal } from '@/hooks/useCustomWalletModal';
 
 export function HeroWithAssets() {
   const router = useRouter();
   const { connected, publicKey, disconnect } = useWallet();
-  const { setVisible } = useWalletModal();
+  const { setVisible } = useCustomWalletModal();
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {

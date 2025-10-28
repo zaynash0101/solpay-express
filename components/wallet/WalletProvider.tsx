@@ -3,18 +3,21 @@
 import React, { useMemo } from 'react';
 import { ConnectionProvider, WalletProvider as SolanaWalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
-
-// Import wallet adapter CSS
-import '@solana/wallet-adapter-react-ui/styles.css';
+import { ConnectWalletModal } from './ConnectWalletModal';
+import { WalletModalProvider as CustomWalletModalProvider, useCustomWalletModal } from '@/hooks/useCustomWalletModal';
 
 interface WalletProviderProps {
   children: React.ReactNode;
+}
+
+function WalletModalWrapper() {
+  const { visible, setVisible } = useCustomWalletModal();
+  return <ConnectWalletModal isOpen={visible} onClose={() => setVisible(false)} />;
 }
 
 export function WalletProvider({ children }: WalletProviderProps) {
@@ -50,9 +53,10 @@ export function WalletProvider({ children }: WalletProviderProps) {
           console.error('Wallet error:', error);
         }}
       >
-        <WalletModalProvider>
+        <CustomWalletModalProvider>
           {children}
-        </WalletModalProvider>
+          <WalletModalWrapper />
+        </CustomWalletModalProvider>
       </SolanaWalletProvider>
     </ConnectionProvider>
   );
