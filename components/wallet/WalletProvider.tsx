@@ -50,6 +50,13 @@ export function WalletProvider({ children }: WalletProviderProps) {
         wallets={wallets} 
         autoConnect={true}
         onError={(error) => {
+          // Suppress property descriptor errors from browser extensions
+          if (error && error.message && (
+            error.message.includes('property descriptor') ||
+            error.message.includes('chrome-extension')
+          )) {
+            return; // Silently ignore extension errors
+          }
           console.error('Wallet error:', error);
         }}
       >

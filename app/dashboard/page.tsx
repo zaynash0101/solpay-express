@@ -1,7 +1,7 @@
 'use client';
 
-import { InvoiceDashboard } from '@/components/integrated/InvoiceDashboard';
+import { InvoiceDashboardFixed } from '@/components/integrated/InvoiceDashboardFixed';
 
 export default function DashboardPage() {
-  return <InvoiceDashboard />;
+  return <InvoiceDashboardFixed />;
 }

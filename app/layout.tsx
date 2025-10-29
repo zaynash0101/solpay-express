@@ -5,6 +5,7 @@ import "./globals.css";
 import "./wallet-override.css";
 import { WalletProvider } from "@/components/wallet/WalletProvider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { ErrorSuppressor } from "@/components/ErrorSuppressor";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
+        <ErrorSuppressor />
         <ErrorBoundary>
           <WalletProvider>
             {children}
