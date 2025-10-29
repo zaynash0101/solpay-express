@@ -502,20 +502,17 @@ export function HeroWithAssets() {
               { 
                 value: '< $0.01', 
                 label: 'Per Transaction', 
-                description: '99% cheaper than PayPal or Wise',
-                color: '#9945FF' 
+                description: '99% cheaper than PayPal or Wise'
               },
               { 
                 value: '< 2 sec', 
                 label: 'Payment Speed', 
-                description: '1000x faster than bank transfers',
-                color: '#14F195' 
+                description: '1000x faster than bank transfers'
               },
               { 
                 value: '0%', 
                 label: 'International Fees', 
-                description: 'No borders, no conversion fees',
-                color: '#00D4FF' 
+                description: 'No borders, no conversion fees'
               }
             ].map((stat, i) => {
               return (
@@ -545,7 +542,7 @@ export function HeroWithAssets() {
                     style={{
                       fontSize: '3rem',
                       fontWeight: 'bold',
-                      color: stat.color,
+                      color: '#FFFFFF',
                       marginBottom: '0.5rem',
                       textAlign: 'center'
                     }}

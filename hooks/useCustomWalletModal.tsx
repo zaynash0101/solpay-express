@@ -22,7 +22,12 @@ export function WalletModalProvider({ children }: { children: ReactNode }) {
 export function useCustomWalletModal() {
   const context = useContext(WalletModalContext);
   if (!context) {
-    throw new Error('useCustomWalletModal must be used within WalletModalProvider');
+    // Return a safe default instead of throwing
+    console.warn('useCustomWalletModal: WalletModalProvider not found, using fallback');
+    return {
+      visible: false,
+      setVisible: () => console.warn('WalletModalProvider not available')
+    };
   }
   return context;
 }

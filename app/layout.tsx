@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import "./emergency-styles.css";
+// import "./emergency-styles.css"; // DISABLED - was breaking Tailwind CSS
 import "./wallet-override.css";
 import { WalletProvider } from "@/components/wallet/WalletProvider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";

@@ -37,22 +37,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Regular Buttons */
-button:not(.glass-button), .button {
-  background: #9945FF !important;
-  color: white !important;
-  padding: 0.75rem 1.5rem !important;
-  border-radius: 0.5rem !important;
-  border: none !important;
-  cursor: pointer !important;
-  font-weight: 600 !important;
-  transition: all 0.3s !important;
-}
-
-button:not(.glass-button):hover, .button:hover {
-  transform: scale(1.05) !important;
-  box-shadow: 0 8px 30px rgba(153, 69, 255, 0.4) !important;
-}
+/* Regular Buttons - Removed to prevent conflicts with component styles */
 
 /* Cards */
 .card {
@@ -63,13 +48,13 @@ button:not(.glass-button):hover, .button:hover {
   padding: 1.5rem !important;
 }
 
-/* Text Colors */
+/* Text Colors - Removed !important to allow component overrides */
 h1, h2, h3, h4, h5, h6 {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 p {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Inputs */
@@ -96,11 +81,4 @@ input:focus, textarea:focus, select:focus {
   font-weight: 600 !important;
 }
 
-/* Fix any black text */
-* {
-  color: inherit !important;
-}
-
-body * {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
+/* Removed universal color override - was breaking component styles and icons */
