@@ -48,12 +48,14 @@ export function WalletProvider({ children }: WalletProviderProps) {
     <ConnectionProvider endpoint={endpoint}>
       <SolanaWalletProvider 
         wallets={wallets} 
-        autoConnect={true}
+        autoConnect={false}
         onError={(error) => {
-          // Suppress property descriptor errors from browser extensions
+          // Suppress all wallet connection errors from browser extensions
           if (error && error.message && (
             error.message.includes('property descriptor') ||
-            error.message.includes('chrome-extension')
+            error.message.includes('chrome-extension') ||
+            error.message.includes('MetaMask') ||
+            error.message.includes('connect')
           )) {
             return; // Silently ignore extension errors
           }

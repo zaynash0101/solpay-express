@@ -43,7 +43,7 @@ const SUPPORTED_WALLETS: WalletOption[] = [
 ];
 
 export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps) {
-  const { select, wallets, connected, connecting } = useWallet();
+  const { select, wallets, connected, connecting, connect } = useWallet();
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -62,13 +62,26 @@ export function ConnectWalletModal({ isOpen, onClose }: ConnectWalletModalProps)
       
       if (!wallet) {
         setError(`${walletName} wallet not found. Please install it first.`);
+        setSelectedWallet(null);
         return;
       }
 
+      // Select the wallet
       select(wallet.adapter.name);
+      
+      // Wait a bit for selection to complete, then connect
+      setTimeout(async () => {
+        try {
+          await connect();
+        } catch (connectErr) {
+          console.error('Connection error:', connectErr);
+          setError('Failed to connect. Please try again.');
+          setSelectedWallet(null);
+        }
+      }, 100);
     } catch (err) {
-      console.error('Wallet connection error:', err);
-      setError('Failed to connect wallet. Please try again.');
+      console.error('Wallet selection error:', err);
+      setError('Failed to select wallet. Please try again.');
       setSelectedWallet(null);
     }
   };

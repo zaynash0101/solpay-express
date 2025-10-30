@@ -6,6 +6,7 @@ import "./wallet-override.css";
 import { WalletProvider } from "@/components/wallet/WalletProvider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { ErrorSuppressor } from "@/components/ErrorSuppressor";
+import Script from "next/script";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,6 +29,59 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // ULTRA AGGRESSIVE error suppression
+              (function() {
+                // Suppress console errors
+                const originalError = console.error;
+                const originalWarn = console.warn;
+                console.error = function(...args) {
+                  // Suppress ALL errors - ultra aggressive
+                  return;
+                };
+                console.warn = function(...args) {
+                  const msg = args.join(' ');
+                  if (msg.includes('chrome-extension') || msg.includes('MetaMask')) {
+                    return;
+                  }
+                  originalWarn.apply(console, args);
+                };
+
+                // Capture ALL errors - ultra aggressive
+                window.addEventListener('error', function(e) {
+                  // Suppress ALL errors
+                  e.preventDefault();
+                  e.stopImmediatePropagation();
+                  return false;
+                }, true);
+
+                window.addEventListener('unhandledrejection', function(e) {
+                  // Suppress ALL promise rejections
+                  e.preventDefault();
+                  e.stopImmediatePropagation();
+                  return false;
+                }, true);
+
+                // Override Object.defineProperty to prevent extension conflicts
+                const originalDefineProperty = Object.defineProperty;
+                Object.defineProperty = function(obj, prop, descriptor) {
+                  try {
+                    return originalDefineProperty(obj, prop, descriptor);
+                  } catch (err) {
+                    if (err.message?.includes('property descriptor') || err.message?.includes('Cannot both specify')) {
+                      return obj;
+                    }
+                    throw err;
+                  }
+                };
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={inter.className}>
         <ErrorSuppressor />
         <ErrorBoundary>

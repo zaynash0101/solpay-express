@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset body and html to remove any default spacing */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+}
+
 @layer base {
   :root {
     /* Professional Single-Accent Color System */
@@ -128,6 +139,81 @@
     100% {
       background-position: 200% 0;
     }
+  }
+
+  /* Enhanced Glassmorphism utilities */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 1rem;
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(153, 69, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(153, 69, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Gradient text utilities */
+  .gradient-text-purple {
+    background: linear-gradient(to right, #9945FF, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  .gradient-text-green {
+    background: linear-gradient(to right, #14F195, #00D4FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  .gradient-text-full {
+    background: linear-gradient(to right, #9945FF, #ec4899, #14F195, #00D4FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  /* Button gradients */
+  .btn-gradient {
+    background: linear-gradient(to right, #9945FF, #ec4899);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    color: white;
+    font-weight: 600;
+  }
+
+  .btn-gradient:hover {
+    background: linear-gradient(to right, #7c3aed, #db2777);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(153, 69, 255, 0.5);
+  }
+
+  .btn-gradient-green {
+    background: linear-gradient(to right, #14F195, #00D4FF);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    color: #0F0F23;
+    font-weight: 600;
+  }
+
+  .btn-gradient-green:hover {
+    background: linear-gradient(to right, #10B981, #0EA5E9);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(20, 241, 149, 0.5);
   }
 }
 
