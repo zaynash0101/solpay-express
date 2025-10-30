@@ -2,18 +2,31 @@
 
 import { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useBalance } from '@/hooks/useBalance';
 import { useCustomWalletModal } from "@/hooks/useCustomWalletModal";
 import { Wallet, FileText, Users, Send, Plus, TrendingUp, Clock, CheckCircle, DollarSign } from 'lucide-react';
 import { getInvoiceStats, initializeDemoData } from '@/lib/invoiceStorage';
+import { DEMO_INVOICES, DEMO_CLIENTS, DEMO_STATS } from '@/lib/demoData';
+import toast, { Toaster } from 'react-hot-toast';
 
 export function BeautifulDashboard() {
   const { publicKey, connected } = useWallet();
   const { balance } = useBalance();
   const { setVisible } = useCustomWalletModal();
+  const isDemoMode = !connected;
   
-  // Initialize with safe default values
+  // Initialize with demo data or real data
   const [stats, setStats] = useState(() => {
+    if (!connected) {
+      // Use demo stats when not connected
+      return {
+        total: DEMO_STATS.totalInvoices,
+        pending: DEMO_STATS.pendingInvoices,
+        paid: DEMO_STATS.paidInvoices,
+        totalAmount: DEMO_STATS.totalEarned
+      };
+    }
     try {
       const invoiceStats = getInvoiceStats();
       return {
@@ -41,113 +54,43 @@ export function BeautifulDashboard() {
       } catch (error) {
         console.error('Error loading stats:', error);
       }
+    } else {
+      // Reset to demo stats when disconnected
+      setStats({
+        total: DEMO_STATS.totalInvoices,
+        pending: DEMO_STATS.pendingInvoices,
+        paid: DEMO_STATS.paidInvoices,
+        totalAmount: DEMO_STATS.totalEarned
+      });
     }
   }, [connected, publicKey]);
 
-  // Connect Wallet Screen
-  if (!connected) {
-    return (
+  // Demo mode handlers
+  const handleDemoAction = (actionName: string) => {
+    toast('🎭 Demo Mode - Connect your wallet to ' + actionName, {
+      duration: 3000,
+      style: {
+        background: 'rgba(153, 69, 255, 0.1)',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(153, 69, 255, 0.3)',
+        color: 'white',
+      },
+    });
+  };
+
+  // Always show dashboard - no early return
+  return (
+    <>
+      <Toaster position="top-center" />
       <div style={{ 
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        padding: '2rem',
+        overflow: 'auto',
         zIndex: 10
       }}>
-        <div style={{ 
-          position: 'relative', 
-          zIndex: 20,
-          maxWidth: '420px',
-          width: '100%',
-          background: 'rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 8px 32px 0 rgba(153, 69, 255, 0.5)',
-          borderRadius: '1.25rem',
-          padding: '2rem 1.75rem'
-        }}>
-          <div style={{
-            width: '64px',
-            height: '64px',
-            margin: '0 auto 1.25rem',
-            borderRadius: '50%',
-            background: 'linear-gradient(to bottom right, rgb(153, 69, 255), rgb(236, 72, 153))',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 8px 12px -2px rgba(153, 69, 255, 0.5)'
-          }}>
-            <Wallet style={{ width: '32px', height: '32px', color: 'white' }} />
-          </div>
-          
-          <h2 style={{
-            fontSize: '1.75rem',
-            fontWeight: '700',
-            textAlign: 'center',
-            marginBottom: '0.75rem',
-            color: 'white'
-          }}>
-            Connect Your Wallet
-          </h2>
-          
-          <p style={{
-            color: 'rgba(255, 255, 255, 0.7)',
-            textAlign: 'center',
-            marginBottom: '1.5rem',
-            fontSize: '0.95rem',
-            lineHeight: '1.5'
-          }}>
-            Please connect your Solana wallet to access your invoice dashboard
-          </p>
-          
-          <button
-            onClick={() => setVisible(true)}
-            style={{
-              width: '100%',
-              padding: '0.875rem 1.5rem',
-              fontSize: '1rem',
-              fontWeight: '600',
-              color: 'white',
-              background: 'linear-gradient(to right, #9945FF, #ec4899)',
-              border: 'none',
-              borderRadius: '0.625rem',
-              cursor: 'pointer',
-              transition: 'transform 0.2s, box-shadow 0.2s',
-              boxShadow: '0 4px 6px -1px rgba(153, 69, 255, 0.5)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(153, 69, 255, 0.7)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(153, 69, 255, 0.5)';
-            }}
-          >
-            Connect Wallet
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  // Main Dashboard
-  return (
-    <div style={{ 
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      overflow: 'auto',
-      zIndex: 10
-    }}>
       {/* Glassmorphism Header */}
       <header style={{ 
         position: 'sticky', 
@@ -197,6 +140,54 @@ export function BeautifulDashboard() {
           </div>
         </div>
       </header>
+
+      {/* Demo Mode Banner */}
+      {isDemoMode && (
+        <div style={{
+          background: 'linear-gradient(to right, rgba(153, 69, 255, 0.2), rgba(236, 72, 153, 0.2))',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          padding: '1rem 0'
+        }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <span style={{ fontSize: '1.5rem' }}>🎭</span>
+                <div>
+                  <p style={{ fontWeight: '600', color: 'white', marginBottom: '0.25rem' }}>Demo Mode - Exploring with sample data</p>
+                  <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.8)' }}>Connect your wallet to create real invoices and receive payments</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setVisible(true)}
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  fontSize: '0.95rem',
+                  fontWeight: '600',
+                  color: 'white',
+                  background: 'linear-gradient(to right, #9945FF, #ec4899)',
+                  border: 'none',
+                  borderRadius: '0.5rem',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  boxShadow: '0 4px 6px -1px rgba(153, 69, 255, 0.5)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(153, 69, 255, 0.7)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(153, 69, 255, 0.5)';
+                }}
+              >
+                Connect Wallet
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Main Content */}
       <main style={{ maxWidth: '1280px', margin: '0 auto', padding: '2rem 1rem' }}>
@@ -292,15 +283,16 @@ export function BeautifulDashboard() {
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
             {[
-              { label: 'Create Invoice', icon: Plus, color: '#9945FF' },
-              { label: 'View Invoices', icon: FileText, color: '#ec4899' },
-              { label: 'Manage Clients', icon: Users, color: '#14F195' },
-              { label: 'Payment Requests', icon: Send, color: '#00D4FF' }
+              { label: 'Create Invoice', icon: Plus, color: '#9945FF', action: 'create invoices' },
+              { label: 'View Invoices', icon: FileText, color: '#ec4899', action: 'view invoices' },
+              { label: 'Manage Clients', icon: Users, color: '#14F195', action: 'manage clients' },
+              { label: 'Payment Requests', icon: Send, color: '#00D4FF', action: 'send payment requests' }
             ].map((action, index) => {
               const Icon = action.icon;
               return (
                 <button
                   key={index}
+                  onClick={() => isDemoMode ? handleDemoAction(action.action) : null}
                   style={{
                     background: 'rgba(255, 255, 255, 0.05)',
                     backdropFilter: 'blur(10px)',
@@ -393,6 +385,7 @@ export function BeautifulDashboard() {
           </div>
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 }
