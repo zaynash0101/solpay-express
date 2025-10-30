@@ -30,10 +30,10 @@ export function BeautifulDashboard() {
     try {
       const invoiceStats = getInvoiceStats();
       return {
-        total: invoiceStats?.total || 0,
-        pending: invoiceStats?.pending || 0,
-        paid: invoiceStats?.paid || 0,
-        totalAmount: invoiceStats?.totalAmount || 0
+        total: invoiceStats?.totalInvoices || 0,
+        pending: invoiceStats?.pendingInvoices || 0,
+        paid: invoiceStats?.paidInvoices || 0,
+        totalAmount: invoiceStats?.totalEarned || 0,
       };
     } catch (error) {
       return { total: 0, pending: 0, paid: 0, totalAmount: 0 };
