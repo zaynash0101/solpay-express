@@ -56,54 +56,52 @@ export function BeautifulDashboard() {
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center', 
-        padding: '1rem',
+        padding: '2rem',
         zIndex: 10
       }}>
         <div style={{ 
           position: 'relative', 
           zIndex: 20,
-          maxWidth: '28rem',
+          maxWidth: '420px',
           width: '100%',
           background: 'rgba(255, 255, 255, 0.05)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           boxShadow: '0 8px 32px 0 rgba(153, 69, 255, 0.5)',
-          borderRadius: '1.5rem',
-          padding: '3rem 2rem'
+          borderRadius: '1.25rem',
+          padding: '2rem 1.75rem'
         }}>
           <div style={{
-            width: '80px',
-            height: '80px',
-            margin: '0 auto 1.5rem',
+            width: '64px',
+            height: '64px',
+            margin: '0 auto 1.25rem',
             borderRadius: '50%',
             background: 'linear-gradient(to bottom right, rgb(153, 69, 255), rgb(236, 72, 153))',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 10px 15px -3px rgba(153, 69, 255, 0.5)'
+            boxShadow: '0 8px 12px -2px rgba(153, 69, 255, 0.5)'
           }}>
-            <Wallet style={{ width: '40px', height: '40px', color: 'white' }} />
+            <Wallet style={{ width: '32px', height: '32px', color: 'white' }} />
           </div>
           
           <h2 style={{
-            fontSize: '2rem',
-            fontWeight: 'bold',
+            fontSize: '1.75rem',
+            fontWeight: '700',
             textAlign: 'center',
-            marginBottom: '1rem',
-            background: 'linear-gradient(to right, #9945FF, #ec4899)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
+            marginBottom: '0.75rem',
+            color: 'white'
           }}>
             Connect Your Wallet
           </h2>
           
           <p style={{
-            color: '#d1d5db',
+            color: 'rgba(255, 255, 255, 0.7)',
             textAlign: 'center',
-            marginBottom: '2rem',
-            fontSize: '1.125rem'
+            marginBottom: '1.5rem',
+            fontSize: '0.95rem',
+            lineHeight: '1.5'
           }}>
             Please connect your Solana wallet to access your invoice dashboard
           </p>
@@ -112,13 +110,13 @@ export function BeautifulDashboard() {
             onClick={() => setVisible(true)}
             style={{
               width: '100%',
-              padding: '1rem 2rem',
-              fontSize: '1.125rem',
+              padding: '0.875rem 1.5rem',
+              fontSize: '1rem',
               fontWeight: '600',
               color: 'white',
               background: 'linear-gradient(to right, #9945FF, #ec4899)',
               border: 'none',
-              borderRadius: '0.75rem',
+              borderRadius: '0.625rem',
               cursor: 'pointer',
               transition: 'transform 0.2s, box-shadow 0.2s',
               boxShadow: '0 4px 6px -1px rgba(153, 69, 255, 0.5)'

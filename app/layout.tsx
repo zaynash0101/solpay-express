@@ -12,6 +12,7 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://solpay-express.vercel.app'),
   title: "SolPay Express - Instant Invoice Payments on Solana",
   description: "Professional invoicing platform for Pakistani freelancers. Create invoices and receive instant USDC payments with 99% lower fees than PayPal or Wise.",
   keywords: ["solana", "invoice", "payments", "freelancer", "pakistan", "usdc", "crypto", "web3", "blockchain"],
